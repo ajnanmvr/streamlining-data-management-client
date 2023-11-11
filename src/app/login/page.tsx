@@ -19,7 +19,7 @@ export default function Signin() {
         <div className='w-20'>
           <img className='object-contain' src="/logo/logo-only.png" alt="Logo" />
         </div>
-        <h1 className="text-center font-bold text-2xl">Login to Continue</h1>
+        <h1 className="text-center font-semibold text-2xl">Login to <span className="font-extrabold text-primary">Excelens</span></h1>
         <input
           type="text"
           placeholder="Username"
@@ -37,11 +37,12 @@ export default function Signin() {
         <button type="submit" className="hover:bg-light border-primary border rounded-lg text-white px-3 py-1 bg-primary">
           Login
         </button>
-        <p className="text-sm">Don't have an account? <Link className="font-bold text-light" href="/register">Register</Link></p>
+        <Link href="/register">
+          <p className="text-sm">Don't have an account? <span className="font-bold text-light">Register</span></p>
+        </Link>
       </form>
 
       <div className="mt-4">
-        {/* Replace "/register" with the actual path to your registration page */}
       </div>
     </div>
   );

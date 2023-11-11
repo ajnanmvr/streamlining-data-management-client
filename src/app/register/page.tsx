@@ -21,7 +21,7 @@ const [lastName,setLastName] = useState("")
   };
   return (
     <div className="flex w-screen h-screen bg-smoke items-center justify-center bg">
-      <form onSubmit={submitForm} className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center">
+      <form onSubmit={submitForm} className="bg-white flex flex-col h-fit md:w-96  md:p-10 rounded-xl gap-3 items-center">
         <div className='w-20'>
           <img className='object-contain' src="/logo/logo-only.png" alt="Logo" />
         </div>
@@ -64,12 +64,10 @@ const [lastName,setLastName] = useState("")
         <button type="submit" className="hover:bg-light border-primary border rounded-lg text-white px-3 py-1 bg-primary">
           Register
         </button>
-        <p className="text-sm">Already have an account? <Link className="font-bold text-light" href="/login">Login</Link></p>
+        <Link href="/login">
+        <p className="text-sm">Already have an account? <span className="font-bold text-light">Login</span></p>
+        </Link>
       </form>
-
-      <div className="mt-4">
-        {/* Replace "/register" with the actual path to your registration page */}
-      </div>
     </div>
   );
 }
