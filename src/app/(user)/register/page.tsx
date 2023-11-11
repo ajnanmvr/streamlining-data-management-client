@@ -5,7 +5,8 @@ import { useState } from "react";
 
 export default function Signup() {
   const [avatar, setAvatar] = useState(null);
-  const [name, setName] = useState("");
+const [firstName,setFirstName]=useState("")
+const [lastName,setLastName] = useState("")
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +15,6 @@ export default function Signup() {
     e.preventDefault();
     console.log({
       avatar: avatar,
-      name: name,
       email: email,
       password: password,
     });
@@ -28,8 +28,15 @@ export default function Signup() {
         <h1 className="text-center font-bold text-2xl">Register to Continue</h1>
         <input
           type="text"
-          placeholder="Name"
-          onChange={(e: any) => setName(e.target.value)}
+          placeholder="First Name"
+          onChange={(e: any) => setFirstName(e.target.value)}
+          className="px-3 py-2 rounded-lg border focus:border-primary"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          onChange={(e: any) => setLastName(e.target.value)}
           className="px-3 py-2 rounded-lg border focus:border-primary"
           required
         />
