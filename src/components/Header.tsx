@@ -2,13 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 function Header() {
     return (
-        <header className='h-20 flex pt-20 pb-10 p-10 lg:px-16 justify-between items-center'>
+        <header className='h-20 flex pt-20 pb-10 p-10 lg:px-16 justify-between items-center '>
             <Link href={"/"}>
                 <div className='w-48'>
                     <img className='object-contain' src="/logo/logo.png" />
                 </div>
             </Link>
-
             <div>
                 <ul className='flex gap-1 items-center'>
 
