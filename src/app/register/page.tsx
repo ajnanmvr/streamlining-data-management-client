@@ -25,7 +25,8 @@ const [lastName,setLastName] = useState("")
         <div className='w-20'>
           <img className='object-contain' src="/logo/logo-only.png" alt="Logo" />
         </div>
-        <h1 className="text-center font-bold text-2xl">Register to Continue</h1>
+        <h1 className="text-center font-semibold text-2xl">Register in <span className="font-extrabold text-primary">Excelens</span></h1>
+
         <input
           type="text"
           placeholder="First Name"

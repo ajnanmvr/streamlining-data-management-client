@@ -9,13 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+
     "formidable": "^3.5.1",
+
+    "framer-motion": "^10.16.4",
+
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+
     "@types/formidable": "^3.4.5",
+
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
