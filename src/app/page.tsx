@@ -1,7 +1,11 @@
+import Header from '@/components/Header'
+
 export default function Home() {
+
   return (
-  <main className="bg-primary">
-    Home
-  </main>
+    <main>
+      <Header />
+      <div> body</div>
+    </main>
   )
 }
