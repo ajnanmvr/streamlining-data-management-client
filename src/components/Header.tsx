@@ -10,10 +10,10 @@ function Header() {
                 <ul className='flex gap-1 items-center'>
                     
                     <li className='hover:text-primary px-3 py-1 hover:border rounded-lg'>
-                        <Link href={"#"}>Register</Link>
+                        <Link href={"register"}>Register</Link>
                     </li>
                     <li className='hover:bg-light border-primary border rounded-lg text-white px-3 py-1 bg-primary'>
-                        <Link href={"#"}>Login</Link>
+                        <Link href={"login"}>Login</Link>
                     </li>
                 </ul>
             </div>

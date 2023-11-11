@@ -35,7 +35,7 @@ export default function Signin() {
           required
         />
         <button type="submit" className="hover:bg-light border-primary border rounded-lg text-white px-3 py-1 bg-primary">
-          Sign In
+          Login
         </button>
         <p className="text-sm">Don't have an account? <Link className="font-bold text-light" href="/register">Register</Link></p>
       </form>

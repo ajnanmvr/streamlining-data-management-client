@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Signup() {
@@ -19,48 +20,49 @@ export default function Signup() {
     });
   };
   return (
-    <div>
-      <form onSubmit={submitForm}>
+    <div className="flex w-screen h-screen bg-smoke items-center justify-center bg">
+      <form onSubmit={submitForm} className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center">
+        <div className='w-20'>
+          <img className='object-contain' src="/logo/logo-only.png" alt="Logo" />
+        </div>
+        <h1 className="text-center font-bold text-2xl">Register to Continue</h1>
         <input
-          type="file"
-          placeholder="avatar"
-          onChange={(e: any) => {
-            setAvatar(e.target.files[0]);
-          }}
+          type="text"
+          placeholder="Name"
+          onChange={(e: any) => setName(e.target.value)}
+          className="px-3 py-2 rounded-lg border focus:border-primary"
           required
         />
         <input
           type="text"
-          placeholder="name"
-          onChange={(e: any) => {
-            setName(e.target.value);
-          }}
+          placeholder="Username"
+          onChange={(e: any) => setUsername(e.target.value)}
+          className="px-3 py-2 rounded-lg border focus:border-primary"
           required
         />
         <input
-        type="text"
-        placeholder="username"
-        onChange={(e: any) => {
-          setUsername(e.target.value);
-        }}
-        required
-      />
-        <input
           type="email"
-          placeholder="email"
-          onChange={(e: any) => {
-            setEmail(e.target.value);
-          }}
+          placeholder="Email"
+          onChange={(e: any) => setEmail(e.target.value)}
+          className="px-3 py-2 rounded-lg border focus:border-primary"
           required
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={(e: any) => setPassword(e.target.value)}
+          className="px-3 py-2 rounded-lg border focus:border-primary"
           required
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="hover:bg-light border-primary border rounded-lg text-white px-3 py-1 bg-primary">
+          Register
+        </button>
+        <p className="text-sm">Already have an account? <Link className="font-bold text-light" href="/login">Login</Link></p>
       </form>
+
+      <div className="mt-4">
+        {/* Replace "/register" with the actual path to your registration page */}
+      </div>
     </div>
   );
 }
