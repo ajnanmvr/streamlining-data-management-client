@@ -2,24 +2,24 @@
 import { useState } from "react";
 
 export default function Signin() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const submitForm = (e: any) => {
     e.preventDefault();
     console.log({
-      email: email,
+      username: username,
       password: password,
     });
-  }
+  };
 
   return (
     <div>
       <form onSubmit={submitForm}>
         <input
-          type="email"
-          placeholder="email"
-          onChange={(e: any) => setEmail(e.target.value)}
+          type="text"
+          placeholder="username"
+          onChange={(e: any) => setUsername(e.target.value)}
           required
         />
         <input

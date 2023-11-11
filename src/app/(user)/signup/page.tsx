@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function Signup() {
   const [avatar, setAvatar] = useState(null);
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,6 +37,14 @@ export default function Signup() {
           }}
           required
         />
+        <input
+        type="text"
+        placeholder="username"
+        onChange={(e: any) => {
+          setUsername(e.target.value);
+        }}
+        required
+      />
         <input
           type="email"
           placeholder="email"
