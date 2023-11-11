@@ -1,8 +1,8 @@
-export default function Profile(){
-    return(
+export default function Profile() {
+    return (
         <div>
             <h1>Profile</h1>
-            <img src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png" alt="" />
+
             <button>Edit Details</button>
             <p>Name: Muhammed Hisham</p>
             <p>Email: hishamac@gmail.com</p>
