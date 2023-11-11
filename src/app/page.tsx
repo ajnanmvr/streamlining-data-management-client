@@ -4,7 +4,7 @@ import HeroSection from '@/components/Home/HeroSection'
 export default function Home() {
 
   return (
-    <main>
+    <main className='bg'>
       <Header />
       <HeroSection />
     </main>
