@@ -26,8 +26,8 @@ export default function Page() {
 
     return <div>
         <form onSubmit={submitForm}>
-            <input type="file" onChange={(e: any) => { setFile(e.target.files[0]) }} required />
-            <input type="submit" value={`Submit`} />
+            <input type="file" className="file:border-primary file:border file:rounded-lg file:text-primary file:px-3 file:py-1 file:hover:bg-smoke file:font-semibold file:bg-white" onChange={(e: any) => { setFile(e.target.files[0]) }} required />
+            <input type="submit" className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary" value={`Submit`} />
         </form>
         <div>
             {excelData.map((sheet: any, sheetIndex: any) => (
