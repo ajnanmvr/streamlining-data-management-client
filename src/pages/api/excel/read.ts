@@ -17,15 +17,28 @@ async function readExcel(filePath:any) {
     const sheetData = {
       sheetName: worksheet.name,
       rows: [],
+      headers:[],
     };
+    const sheet = workbook.worksheets[0];
+
+    // Extract headers from the first row
+    const firstRow:any = sheet.getRow(1);
+    const headerValues = firstRow.values.map((value:any) => String(value).trim());
+    // console.log(headerValues.filter(function(el:any) { return el; }));
+    
+    sheetData.headers = headerValues.filter(function(element:any) { return element; })
 
     worksheet.eachRow((row, rowNumber) => {
+      if (rowNumber === 1) {
+        return;
+      }
       const rowData = {
         cells: [],
       };
+    
+
 
       row.eachCell((cell, colNumber) => {
-        console.log(cell.$col$row);
         
         const cellData = {
           value: cell.value,
@@ -42,6 +55,7 @@ async function readExcel(filePath:any) {
     });
 
     result.push(sheetData);
+    
   });
 
   return result;
@@ -63,9 +77,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.error('Error parsing form:', err);
       return res.status(500).json({ error: 'Internal Server Error' });
     }
-
-    const filePath = (files?.files as any)[0].filepath;
     console.log(files);
+    const filePath = (files?.file as any)[0].filepath;
+   
     
 
     try {
