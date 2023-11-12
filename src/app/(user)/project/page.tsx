@@ -12,7 +12,7 @@ export default function Page() {
 
         const formData = new FormData();
         formData.append("file", file);
-        axios.post("http://localhost:3000/api/excel/read", formData, {
+        axios.post("https://streamlining-data-management-client.vercel.app/api/excel/read", formData, {
             headers: { "Content-Type": "multipart/form-data" }
         }).then((res) => {
             setExcelData(res.data.data);
