@@ -41,7 +41,7 @@ export default function Page() {
                     <thead>
                         <tr className="border-2 border-smoke">
                             {sheet.headers.map((header: any, rowIndex: any) => (
-                                <td className="border-2 p-2 bg-primary text-white capitalize border-primary">{header}</td>
+                                <td className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary">{header}</td>
                             ))}
                         </tr>
                     </thead>
