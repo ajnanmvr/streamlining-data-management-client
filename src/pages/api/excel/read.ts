@@ -29,10 +29,9 @@ async function readExcel(filePath:any) {
     sheetData.headers = headerValues.filter(function(element:any) { return element; })
 
     worksheet.eachRow((row, rowNumber) => {
-     
-      if (rowNumber != 0) {
-        
-      
+      if (rowNumber === 1) {
+        return;
+      }
       const rowData = {
         cells: [],
       };
@@ -53,11 +52,10 @@ async function readExcel(filePath:any) {
       });
 
       sheetData.rows.push(rowData as never);
-  }else{console.log('hmm');
-  }});
+    });
 
     result.push(sheetData);
-  
+    
   });
 
   return result;
