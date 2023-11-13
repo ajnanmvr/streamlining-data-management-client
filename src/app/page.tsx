@@ -1,12 +1,18 @@
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import DemoSection from '@/components/Home/DemoSection'
 import HeroSection from '@/components/Home/HeroSection'
 
 export default function Home() {
 
   return (
-    <main className='bg'>
-      <Header />
-      <HeroSection />
+    <main>
+      <div className='bg'>
+        <Header />
+        <HeroSection />
+      </div>
+      <DemoSection />
+      <Footer />
     </main>
   )
 }
