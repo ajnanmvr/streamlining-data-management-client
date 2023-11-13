@@ -1,47 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { usePathname, useRouter } from "next/navigation";
-
-const downloadExcelFile = async (excelData: String) => {
-  try {
-    const postData = {
-      data: excelData,
-    };
-    // Make a POST request to the Excel API route
-    const response = await fetch("/api/excel/download", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // Specify the content type if sending JSON data
-      },
-      body: JSON.stringify(postData),
-    });
-
-    if (response.ok) {
-      // Convert the response to a Blob and create a URL for downloading
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-
-      // Create a download link and trigger the download
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Excel.xlsx";
-      a.click();
-
-      // Clean up by revoking the URL
-      window.URL.revokeObjectURL(url);
-    } else {
-      console.error("Failed to generate Excel file.");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
+import Link from "next/link";
 
 export default function Page() {
   const [file, setFile] = useState<any>(null);
   const [excelData, setExcelData] = useState<any>([]);
-  const [basePath, setBasePath] = useState<String>();
+
   const submitForm = (e: any) => {
     e.preventDefault();
     console.log(file);
@@ -49,103 +14,96 @@ export default function Page() {
     const formData = new FormData();
     formData.append("file", file);
     axios
-      .post(basePath + "/api/excel/read", formData, {
+      .post("http://127.0.0.1:3000/api/excel/read", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then((res: any) => {
+      .then((res) => {
         setExcelData(res.data.data);
         console.log(res.data.data);
       })
-      .catch((err: any) => {
+      .catch((err) => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    setBasePath(window.location.origin);
-  }, []);
+
+  function setToLocalStorage(data: any) {
+    localStorage.setItem("encodedData", btoa(JSON.stringify(data)));
+  }
 
   return (
-    <div>
-      <form onSubmit={submitForm}>
-        <input
-          type="file"
-          onChange={(e: any) => {
-            setFile(e.target.files[0]);
-          }}
-          required
-        />
-        <input type="submit" value={`Submit`} />
-      </form>
-      <button
-        className="bg-green-400"
-        onClick={() => downloadExcelFile(excelData)}
+    <div className="mt-5">
+      <form
+        onSubmit={submitForm}
+        className="w-full justify-center flex flex-col items-center"
       >
-        Download
-      </button>
-      <div>
-        {excelData.map((sheet: any, sheetIndex: any) => (
-          <div key={sheetIndex}>
-            <h2>{sheet.sheetName}</h2>
-            <table>
-              <thead>
-                <tr className="flex">
-                  {sheet.rows[0].cells.map((cell: any, cellIndex: any) => (
-                    <th key={cellIndex}>{cell.address}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {sheet.rows.map((row: any, rowIndex: any) => (
-                  <tr key={rowIndex}>
-                    {row.cells.map((cell: any, cellIndex: any) => (
-                      <td key={cellIndex}>
-                        {cell.formula ? cell.value.result : cell.value}
-                      </td>
+        <div>
+          <input
+            type="file"
+            className="file:border-primary file:border file:rounded-lg file:text-primary file:px-3 file:py-1 file:hover:bg-smoke file:font-semibold file:bg-white"
+            onChange={(e: any) => {
+              setFile(e.target.files[0]);
+            }}
+            required
+          />
+          <input
+            type="submit"
+            className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary"
+            value={`Submit`}
+          />
+        </div>
+        <a
+          href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+          className="mt-3 text-primary px-3 border border-white rounded-xl py-1 hover:border-primary ml-2"
+        >
+          Download Demo File
+        </a>
+      </form>
+      {excelData.length > 0 && (
+        <>
+          <Link href="/project/edit" onClick={()=>setToLocalStorage(excelData)}>
+            Go to edit page
+          </Link>
+          {excelData.slice(0,3).map((sheet: any, sheetIndex: any) => (
+            <div className=" flex flex-col items-center" key={sheetIndex}>
+              <hr className="border-2 border-dashed w-full border-primary mt-20 -mb-7" />
+              <h2 className="p-3 bg-primary  rounded-xl w-48 text-white text-lg font-semibold text-center">
+                {sheet.sheetName}
+              </h2>
+              <table className="table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
+                <thead>
+                  <tr className="border-2 border-smoke">
+                    {sheet.headers.slice(0,3).map((header: any, rowIndex: any) => (
+                      <>
+                        <td
+                          className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
+                          key={rowIndex}
+                        >
+                          {header}
+                        </td>
+                      </>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
-      </div>
-      <div>
-        {excelData.map((sheet: any, sheetIndex: any) => (
-          <div key={sheetIndex}>
-            <h2>{sheet.sheetName}</h2>
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  {sheet.headers.map((header: any, rowIndex: any) => (
-                    <th scope="col" className="px-6 py-3">
-                      {header.value}
-                    </th>
+                </thead>
+                <tbody>
+                  {sheet.rows.slice(0,3).map((row: any, rowIndex: any) => (
+                    <tr className="border border-smoke" key={rowIndex}>
+                      {row.cells.slice(0,3).map((cell: any, cellIndex: any) => (
+                        <td
+                          key={cellIndex}
+                          scope="col"
+                          className="border p-2 border-smoke"
+                        >
+                          {cell.formula ? cell.value.result : cell.value}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              </thead>
-
-              <tbody>
-                {/* <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                {sheet.rows.map((row: any, rowIndex: any) => (
-                                    <td scope="col" className="px-6 py-3">
-                                        {row.cells[0].value}
-                                    </td>
-                                ))}
-                            </tr> */}
-                {sheet.rows.map((row: any, rowIndex: any) => (
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    {row.cells.map((cell: any, cellIndex: any) => (
-                      <td key={cellIndex} scope="col" className="px-6 py-3">
-                        {cell.formula ? cell.value.result : cell.value}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
-      </div>
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }
