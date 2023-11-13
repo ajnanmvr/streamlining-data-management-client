@@ -1,15 +1,43 @@
+"use client"
 import Card from "@/components/Card";
+import { useUserContext } from "@/context/User";
+import Axios from "@/utils/Axios";
 import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
 export default function Profile() {
+
+    const [profileUser, setProfileUser] = useState<any>()
+    const { setUser , user } = useUserContext();
+
+    useEffect(() => {
+
+        const userId = user?.id;
+        Axios.get(`/users/${userId}`).then((res) => {
+            setProfileUser(res.data)
+            console.log(res.data);
+            
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        console.log(user);
+        
+
+    }, [user])
+
+
     return (
-        <div className="px-16 flex justify-center flex-wrap lg:flex-nowrap gap-10">
+        <>
+        {
+            profileUser ?
+            <div className="px-16 flex justify-center flex-wrap lg:flex-nowrap gap-10">
             <div className="border-light border-2 border-dashed w-96 p-10 rounded-xl flex justify-center flex-col items-center my-10">
                 <div>
                     <img className="h-24" src="/avatar.png" alt="avatar" />
                 </div>
                 <p className="text-center -mb-1">Welcome</p>
-                <p className="font-bold text-2xl text-center my-1 text-primary leading-[23px]">Muhammed Hisham</p>
-                <p className="text-center">hishamac@gmail.com</p>
+                <p className="font-bold text-2xl text-center my-1 text-primary leading-[23px]">{profileUser.FirstName + " " + profileUser.LastName}</p>
+                <p className="text-center">{profileUser.email}</p>
                 <button className="text-sm text-primary mt-3 mb-1">Change Password</button>
                 <div className="flex gap-2 mt-1"><button className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary">Edit Details</button>      <button
 
@@ -22,6 +50,7 @@ export default function Profile() {
             <div>
                 <h1 className="text-2xl font-bold mb-5 ml-2">Project List</h1>
                 <div className="flex flex-wrap justify-stretch  gap-5">
+                    {/* <Card />
                     <Card />
                     <Card />
                     <Card />
@@ -29,8 +58,12 @@ export default function Profile() {
                     <Card />
                     <Card />
                     <Card />
-                    <Card />
-                    <Card />
+                    <Card /> */}
+                    {profileUser.projects?.map((project: any) => {
+                        const projectData = JSON.stringify(project.data);
+                        
+                        return <Card key={project.id} name={project.name} sheets={JSON.parse(projectData).length}/>
+                        })}
                     <Link href={"#"}>
                         <div className="flex group">
                             <div className="border-primary flex justify-center flex-col items-center border-dashed border-2 fill-primary rounded-xl p-8 w-64 gap-2">
@@ -42,5 +75,10 @@ export default function Profile() {
                 </div>
             </div>
         </div>
+        :
+        "Loading..."
+        }
+        
+        </>
     )
 }
