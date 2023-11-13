@@ -120,7 +120,7 @@ export default function Page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {sheet.rows.slice(0,3).map((row: any, rowIndex: any) => (
+                  {sheet.rows.slice(0,4).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke" key={rowIndex}>
                       {row.cells.slice(0,3).map((cell: any, cellIndex: any) => (
                         <td
