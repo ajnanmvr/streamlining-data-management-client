@@ -35,7 +35,7 @@ export const UserContextProvider = ({ children }: any) => {
 
     useEffect(() => {
        Axios.get('users/logged/check').then((data) => {
-        // console.log(data.data);
+        console.log(data.data);
         if(data?.data?.username){
             setUser(data.data);
         }

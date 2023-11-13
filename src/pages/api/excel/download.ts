@@ -1,5 +1,5 @@
 // pages/api/excel/download.ts
-// url: http://localhost:3000/api/excel/read
+// url: http://localhost:3000/api/excel/download; method: POST
 
 import { NextApiRequest, NextApiResponse } from "next";
 import ExcelJS from "exceljs";

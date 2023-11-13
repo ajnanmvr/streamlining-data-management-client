@@ -41,10 +41,11 @@ const downloadExcelFile = async (excelData: String) => {
 export default function Page() {
   const [file, setFile] = useState<any>(null);
   const [excelData, setExcelData] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false); // Introduce loading state
 
   const submitForm = (e: any) => {
     e.preventDefault();
-    console.log(file);
+    setLoading(true); // Set loading to true before making the request
 
     const formData = new FormData();
     formData.append("file", file);
@@ -58,6 +59,9 @@ export default function Page() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false); // Set loading to false after the request is complete
       });
   };
 
@@ -74,7 +78,7 @@ export default function Page() {
         <div>
           <input
             type="file"
-            className="file:border-primary file:border file:rounded-lg file:text-primary file:px-3 file:py-1 file:hover:bg-smoke file:font-semibold file:bg-white"
+            className="file:border-primary file:border file:mr-3 file:rounded-lg file:text-primary file:px-3 file:py-1 file:hover:bg-smoke file:font-semibold file:bg-white"
             onChange={(e: any) => {
               setFile(e.target.files[0]);
             }}
@@ -83,31 +87,30 @@ export default function Page() {
           <input
             type="submit"
             className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary"
-            value={`Submit`}
+            value={`Upload`}
           />
         </div>
         <a
           href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
-          className="mt-3 text-primary px-3 border border-white rounded-xl py-1 hover:border-primary ml-2"
+          className="mt-3 text-sm text-[gray] px-3 border-white rounded-xl py-1 hover:border-primary ml-2"
         >
           Download Demo File
         </a>
       </form>
-      {excelData.length > 0 ? (
+      {loading ? (
+        'Loading...' // Display loading state
+      ) : excelData.length > 0 ? (
         <>
-          <Link href="/project/edit" onClick={()=>setToLocalStorage(excelData)}>
-            Go to edit page
-          </Link>
-          {excelData.slice(0,3).map((sheet: any, sheetIndex: any) => (
-            <div className=" flex flex-col items-center" key={sheetIndex}>
-              <hr className="border-2 border-dashed w-full border-primary mt-20 -mb-7" />
-              <h2 className="p-3 bg-primary  rounded-xl w-48 text-white text-lg font-semibold text-center">
-                {sheet.sheetName}
+          {excelData.slice(0, 5).map((sheet: any, sheetIndex: any) => (
+            <div className=" flex flex-col items-center mb-10" key={sheetIndex}>
+              <hr className="border-2 border-dashed w-full border-primary mt-10 -mb-7" />
+              <h2 className="p-3 bg-primary rounded-xl w-48 text-white font-semibold text-center">
+                Preview
               </h2>
               <table className="table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
                 <thead>
                   <tr className="border-2 border-smoke">
-                    {sheet.headers.slice(0,3).map((header: any, rowIndex: any) => (
+                    {sheet.headers.slice(0, 5).map((header: any, rowIndex: any) => (
                       <>
                         <td
                           className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
@@ -120,9 +123,9 @@ export default function Page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {sheet.rows.slice(0,4).map((row: any, rowIndex: any) => (
+                  {sheet.rows.slice(0, 5).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke" key={rowIndex}>
-                      {row.cells.slice(0,3).map((cell: any, cellIndex: any) => (
+                      {row.cells.slice(0, 5).map((cell: any, cellIndex: any) => (
                         <td
                           key={cellIndex}
                           scope="col"
@@ -132,15 +135,26 @@ export default function Page() {
                         </td>
                       ))}
                     </tr>
+
                   ))}
+                  <tr className="border-smoke border bg-smoke hover:bg-smoker">
+                    <td colSpan={5}>
+                      <Link href="/project/edit"
+                      onClick={() => setToLocalStorage(excelData)}>
+                      <h2 className="p-2 w-full text-primary font-semibold text-center">
+                    Go to Editor
+                      </h2>
+                    </Link></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           ))}
+
         </>
       )
-      : 'Loading...'
-    }
+        : 'dd'
+      }
     </div>
   );
 }

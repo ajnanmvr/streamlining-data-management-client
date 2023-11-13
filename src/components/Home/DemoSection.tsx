@@ -2,6 +2,7 @@ import React from 'react'
 
 function DemoSection() {
     return (
+        // flex-row-reverse
         <div className='flex p-32 justify-center gap-20'>
             <div className='flex flex-col gap-2 justify-center'>
                 <p className='text-primary font-semibold'>#Basic Features</p>
