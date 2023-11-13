@@ -32,33 +32,18 @@ function page() {
           <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
             1
           </p>
-          {excelData[sheetCount].rows.map((row: any, rowIndex: any) => (
+          {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
             <p
               className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
               key={rowIndex}
             >
-              {excelData[sheetCount].rows.indexOf(row)}
+              {excelData[sheetCount]?.rows.indexOf(row) + 2}
             </p>
           ))}
         </div>
         <table className="min-w-full">
           <thead className="cursor-pointer">
             <tr>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
               <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
                 header
               </td>

@@ -78,7 +78,7 @@ export default function Page() {
                           className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
                           key={rowIndex}
                         >
-                          {header}
+                          {header.value}
                         </td>
                       </>
                     ))}
