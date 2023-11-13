@@ -3,6 +3,41 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
+const downloadExcelFile = async (excelData: String) => {
+  try {
+    const postData = {
+      data: excelData,
+    };
+    // Make a POST request to the Excel API route
+    const response = await fetch("/api/excel/download", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Specify the content type if sending JSON data
+      },
+      body: JSON.stringify(postData),
+    });
+
+    if (response.ok) {
+      // Convert the response to a Blob and create a URL for downloading
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      // Create a download link and trigger the download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Excel.xlsx";
+      a.click();
+
+      // Clean up by revoking the URL
+      window.URL.revokeObjectURL(url);
+    } else {
+      console.error("Failed to generate Excel file.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 export default function Page() {
   const [file, setFile] = useState<any>(null);
   const [excelData, setExcelData] = useState<any>([]);
@@ -14,7 +49,7 @@ export default function Page() {
     const formData = new FormData();
     formData.append("file", file);
     axios
-      .post("http://127.0.0.1:3000/api/excel/read", formData, {
+      .post("/api/excel/read", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -78,7 +113,7 @@ export default function Page() {
                           className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
                           key={rowIndex}
                         >
-                          {header}
+                          {header.value}
                         </td>
                       </>
                     ))}
