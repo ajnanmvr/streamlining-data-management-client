@@ -107,7 +107,7 @@ export default function Page() {
               <h2 className="p-3 bg-primary rounded-xl w-48 text-white font-semibold text-center">
                 Preview
               </h2>
-              <table className="table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
+              <table className="border border-primary table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
                 <thead>
                   <tr className="border-2 border-smoke">
                     {sheet.headers.slice(0, 5).map((header: any, rowIndex: any) => (
@@ -137,7 +137,7 @@ export default function Page() {
                     </tr>
 
                   ))}
-                  <tr className="border-smoke border bg-smoke hover:bg-smoker">
+                  <tr className=" border bg-smoke hover:bg-smoker">
                     <td colSpan={5}>
                       <Link href="/project/edit"
                       onClick={() => setToLocalStorage(excelData)}>
