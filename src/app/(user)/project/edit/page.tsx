@@ -24,9 +24,10 @@ function page() {
   return (
     excelData.length > 0 && (
       <>
-        {/* {updateModal && (
-          <div className="relative top-80 left-10 z-10 bg-primary w-auto h-60">
-            <div className="absolute  flex-col">
+        {updateModal && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
+            <div className="bg-green-200 w-96 flex flex-col justify-center p-5 mx-12 gap-3">
+              <p onClick={() => setUpdateModal(false)}>close</p>
               {excelData[sheetCount]?.rows[selectedRow]?.cells.map(
                 (cell: any, cellIndex: any) => (
                   <input
@@ -46,9 +47,10 @@ function page() {
                   />
                 )
               )}
+              <p onClick={() => setUpdateModal(false)}>Save</p>
             </div>
           </div>
-        )} */}
+        )}
         <div className="flex w-[92vw] mt-10 mx-auto overflow-auto h-[69vh] relative">
           <div className="sticky left-0 bg-white cursor-pointer">
             <p className="border-2 px-2 py-1 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary rounded-tl-xl">
@@ -59,7 +61,7 @@ function page() {
                 className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
                 key={rowIndex}
                 onClick={() => {
-                  setSelectedRow(excelData[sheetCount]?.rows.indexOf(row) + 1);
+                  setSelectedRow(excelData[sheetCount]?.rows.indexOf(row));
                   setUpdateModal(true);
                 }}
               >
