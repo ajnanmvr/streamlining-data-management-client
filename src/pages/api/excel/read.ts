@@ -1,5 +1,5 @@
 // pages/api/read.ts
-// url: http://localhost:3000/api/excel/read
+// url: http://localhost:3000/api/excel/read; method: POST
 
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
@@ -18,14 +18,6 @@ async function readExcel(filePath: any) {
       rows: [],
       headers: [],
     };
-    const sheet = workbook.worksheets[0];
-
-    // Extract headers from the first row
-    // const firstRow:any = sheet.getRow(1);
-    // const headerValues = firstRow.values.map((value:any) => String(value).trim());
-    // // console.log(headerValues.filter(function(el:any) { return el; }));
-
-    // sheetData.headers = headerValues.filter(function(element:any) { return element; })
 
     worksheet.eachRow((row, rowNumber) => {
       const rowData = {
