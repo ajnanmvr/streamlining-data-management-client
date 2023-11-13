@@ -1,25 +1,50 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Axios from "@/utils/Axios";
+import { useUserContext } from "@/context/User";
 export default function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState("");
+  const { setUser , user } = useUserContext();
+  const router = useRouter();
 
   const submitForm = (e: any) => {
     e.preventDefault();
-    console.log({
+    // with axios
+    Axios.post('users/login', {
       username: username,
       password: password,
-    });
+    }).then((data) => {
+      if(data?.data?.username){
+        setUser(data.data);
+        router.push('/profile');
+      }
+    }).catch((err) => {
+      setError("Invalid username or password");
+      setTimeout(() => {
+        setError("");
+      }, 5000
+      )
+    }
+    );
+
   };
 
   return (
     <div className="flex w-screen h-screen bg-smoke items-center justify-center bg">
       <form onSubmit={submitForm} className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center">
         <div className='w-20'>
-          <img className='object-contain' src="/logo/logo-only.png" alt="Logo" />
+          <img onClick={()=>{
+            router.push('/')
+          }} className='object-contain cursor-pointer' src="/logo/logo-only.png" alt="Logo" />
         </div>
         <h1 className="text-center font-semibold text-2xl">Login to <span className="font-extrabold text-primary">Excelens</span></h1>
+        <p>
+          {error && <span className="text-red-500">{error}</span>}
+        </p>
         <input
           type="text"
           placeholder="Username"

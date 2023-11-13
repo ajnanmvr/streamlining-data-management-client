@@ -93,7 +93,7 @@ export default function Page() {
           Download Demo File
         </a>
       </form>
-      {excelData.length > 0 && (
+      {excelData.length > 0 ? (
         <>
           <Link href="/project/edit" onClick={()=>setToLocalStorage(excelData)}>
             Go to edit page
@@ -138,7 +138,9 @@ export default function Page() {
             </div>
           ))}
         </>
-      )}
+      )
+      : 'Loading...'
+    }
     </div>
   );
 }
