@@ -13,6 +13,7 @@ const config: Config = {
         light: '#117947',
         dark: '#083922',
         smoke: '#D9EEE4',
+        smoker: '#cae5d8',
       },
     },
   },
