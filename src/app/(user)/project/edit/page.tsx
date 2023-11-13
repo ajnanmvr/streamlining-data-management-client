@@ -1,6 +1,24 @@
-import React from "react";
+"use client";
+import { useEffect, useState } from "react";
 
 function page() {
+  const [excelData, setExcelData] = useState<any>([]);
+
+  function fetchExcelData() {
+    const data = localStorage.getItem("encodedData");
+    if (data) {
+      setExcelData(JSON.parse(atob(data)));
+    }
+  }
+  useEffect(() => {
+    const data = localStorage.getItem("encodedData");
+    if (data) {
+      setExcelData(JSON.parse(atob(data)));
+    }
+    console.log(excelData);
+  }, [excelData]);
+  const index = 0;
+
   return (
     <>
       <div className="flex w-[92vw] mt-10 mx-auto overflow-auto h-[69vh] relative">
@@ -107,268 +125,496 @@ function page() {
           </thead>
           <tbody className="cursor-cell">
             <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
             </tr>
             <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
             </tr>
             <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
             </tr>
             <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
             </tr>
             <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
             </tr>
             <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-            </tr>
-            <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
-                value
-              </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
             </tr>
             <tr>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
-              <td scope="col" className="border px-2 py-1 h-10 border-smoke hover:bg-smoke ">
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+            </tr>
+            <tr>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
+                value
+              </td>
+              <td
+                scope="col"
+                className="border px-2 py-1 h-10 border-smoke hover:bg-smoke "
+              >
                 value
               </td>
             </tr>

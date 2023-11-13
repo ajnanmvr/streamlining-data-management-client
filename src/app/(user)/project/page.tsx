@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Page() {
   const [file, setFile] = useState<any>(null);
@@ -24,6 +25,10 @@ export default function Page() {
         console.log(err);
       });
   };
+
+  function setToLocalStorage(data: any) {
+    localStorage.setItem("encodedData", btoa(JSON.stringify(data)));
+  }
 
   return (
     <div className="mt-5">
@@ -53,45 +58,52 @@ export default function Page() {
           Download Demo File
         </a>
       </form>
-      {excelData.map((sheet: any, sheetIndex: any) => (
-        <div className=" flex flex-col items-center" key={sheetIndex}>
-          <hr className="border-2 border-dashed w-full border-primary mt-20 -mb-7" />
-          <h2 className="p-3 bg-primary  rounded-xl w-48 text-white text-lg font-semibold text-center">
-            {sheet.sheetName}
-          </h2>
-          <table className="table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
-            <thead>
-              <tr className="border-2 border-smoke">
-                {sheet.headers.map((header: any, rowIndex: any) => (
-                  <>
-                    <td
-                      className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
-                      key={rowIndex}
-                    >
-                      {header}
-                    </td>
-                  </>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {sheet.rows.map((row: any, rowIndex: any) => (
-                <tr className="border border-smoke" key={rowIndex}>
-                  {row.cells.map((cell: any, cellIndex: any) => (
-                    <td
-                      key={cellIndex}
-                      scope="col"
-                      className="border p-2 border-smoke"
-                    >
-                      {cell.formula ? cell.value.result : cell.value}
-                    </td>
+      {excelData.length > 0 && (
+        <>
+          <Link href="/project/edit" onClick={()=>setToLocalStorage(excelData)}>
+            Go to edit page
+          </Link>
+          {excelData.slice(0,3).map((sheet: any, sheetIndex: any) => (
+            <div className=" flex flex-col items-center" key={sheetIndex}>
+              <hr className="border-2 border-dashed w-full border-primary mt-20 -mb-7" />
+              <h2 className="p-3 bg-primary  rounded-xl w-48 text-white text-lg font-semibold text-center">
+                {sheet.sheetName}
+              </h2>
+              <table className="table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
+                <thead>
+                  <tr className="border-2 border-smoke">
+                    {sheet.headers.slice(0,3).map((header: any, rowIndex: any) => (
+                      <>
+                        <td
+                          className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
+                          key={rowIndex}
+                        >
+                          {header}
+                        </td>
+                      </>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {sheet.rows.slice(0,3).map((row: any, rowIndex: any) => (
+                    <tr className="border border-smoke" key={rowIndex}>
+                      {row.cells.slice(0,3).map((cell: any, cellIndex: any) => (
+                        <td
+                          key={cellIndex}
+                          scope="col"
+                          className="border p-2 border-smoke"
+                        >
+                          {cell.formula ? cell.value.result : cell.value}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }
