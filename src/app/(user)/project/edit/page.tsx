@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 function page() {
   const [excelData, setExcelData] = useState<any>([]);
   const [sheetCount, setSheetCount] = useState<number>(0);
+  const [selectedRow, setSelectedRow] = useState<any>(0);
+  const [updateModal, setUpdateModal] = useState<boolean>(false);
   const [body, setBody] = useState<any>("");
   const sheetButtonStyles = {
     1: "hover:text-light hover:bg-smoke border-2 border-t-0 border-primary hover:border-light text-[15px] font-semibold rounded-b-xl text-primary px-3 pt-1 pb-2",
@@ -20,106 +22,143 @@ function page() {
   }, []);
 
   return (
-    <>
-      <div className="flex w-[92vw] mt-10 mx-auto overflow-auto h-[69vh] relative">
-        <div className="sticky left-0 bg-white cursor-pointer">
-          <p className="border-2 px-2 py-1 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary rounded-tl-xl">
-            &nbsp;
-          </p>
-          {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
-            <p
-              className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
-              key={rowIndex}
-            >
-              {excelData[sheetCount]?.rows.indexOf(row) + 1}
+    excelData.length > 0 && (
+      <>
+        {updateModal && (
+          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
+            <div className="bg-green-200 w-96 flex flex-col justify-center p-5 mx-12 gap-3">
+              <p onClick={() => setUpdateModal(false)}>close</p>
+              {excelData[sheetCount]?.rows[selectedRow]?.cells.map(
+                (cell: any, cellIndex: any) => (
+                  <input
+                    type="text"
+                    key={cellIndex}
+                    value={cell.formula ? cell.value.result : cell.value}
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setExcelData((prev: any) => {
+                        prev[sheetCount].rows[selectedRow].cells[
+                          cellIndex
+                        ].value = e.target.value;
+                        return [...prev];
+                      });
+                      console.log(excelData);
+                    }}
+                  />
+                )
+              )}
+              <p onClick={() => setUpdateModal(false)}>Save</p>
+            </div>
+          </div>
+        )}
+        <div className="flex w-[92vw] mt-10 mx-auto overflow-auto h-[69vh] relative">
+          <div className="sticky left-0 bg-white cursor-pointer">
+            <p className="border-2 px-2 py-1 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary rounded-tl-xl">
+              &nbsp;
             </p>
-          ))}
-        </div>
-        <table className="min-w-full">
-          <thead className="cursor-pointer">
-            <tr>
-              {excelData[sheetCount]?.headers.map(
-                (header: any, headerIndex: any) => (
-                  <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                    {header.address.slice(0, -1)}
-                  </td>
-                )
-              )}
-            </tr>
-          </thead>
-          <tbody className="cursor-cell">
-            <tr>
-              {excelData[sheetCount]?.headers.map(
-                (header: any, headerIndex: any) => (
-                  <td
-                    scope="col"
-                    className="border px-2 py-1 h-10 border-smoke hover:bg-smoke focus-within:bg-smoke"
-                    key={headerIndex}
-                  >
-                    <input
-                      type="text"
-                      className="h-10 border-smoke focus:outline-none focus-within:bg-smoke font-bold bg-transparent"
-                      defaultValue={header.value}
-                    />
-                  </td>
-                )
-              )}
-            </tr>
-            {excelData[sheetCount]?.rows
-              .slice(1)
-              .map((row: any, rowIndex: any) => (
-                <tr>
-                  {row.cells.map((cell: any, cellIndex: any) => (
+            {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
+              <p
+                className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
+                key={rowIndex}
+                onClick={() => {
+                  setSelectedRow(excelData[sheetCount]?.rows.indexOf(row));
+                  setUpdateModal(true);
+                }}
+              >
+                {excelData[sheetCount]?.rows.indexOf(row) + 1}
+              </p>
+            ))}
+          </div>
+          <table className="min-w-full">
+            <thead className="cursor-pointer">
+              <tr>
+                {excelData[sheetCount]?.headers.map(
+                  (header: any, headerIndex: any) => (
+                    <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
+                      {header.address.slice(0, -1)}
+                    </td>
+                  )
+                )}
+              </tr>
+            </thead>
+            <tbody className="cursor-cell">
+              <tr>
+                {excelData[sheetCount]?.headers.map(
+                  (header: any, headerIndex: any) => (
                     <td
                       scope="col"
                       className="border px-2 py-1 h-10 border-smoke hover:bg-smoke focus-within:bg-smoke"
-                      key={cellIndex}
+                      key={headerIndex}
                     >
                       <input
                         type="text"
-                        className="h-10 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
-                        defaultValue={
-                          cell.formula ? cell.value.result : cell.value
-                        }
+                        className="h-10 border-smoke focus:outline-none focus-within:bg-smoke font-bold bg-transparent"
+                        value={header.value}
                         onChange={(e) => {
-                          console.log(
-                            cell.formula ? cell.value.result : cell.value
-                          );
                           console.log(e.target.value);
                           setExcelData((prev: any) => {
-                            prev[sheetCount].rows[rowIndex + 1].cells[
-                              cellIndex
-                            ].value = e.target.value;
-                            return prev;
+                            prev[sheetCount].headers[headerIndex].value =
+                              e.target.value;
+                            return [...prev];
                           });
                           console.log(excelData);
                         }}
                       />
                     </td>
-                  ))}
-                </tr>
-              ))}
-          </tbody>
-        </table>
-        <div></div>
-      </div>
-      <div className="flex w-[92vw] mx-auto overflow-auto gap-1">
-        {/* <button className={""}>Sheet 1</button> */}
-        {excelData.map((sheet: any, sheetIndex: any) => (
-          <button
-            key={sheetIndex}
-            onClick={() => setSheetCount(excelData.indexOf(sheet))}
-            className={
-              excelData.indexOf(sheet) == sheetCount
-                ? `${sheetButtonStyles[2]}`
-                : `${sheetButtonStyles[1]}`
-            }
-          >
-            {sheet.sheetName}
-          </button>
-        ))}
-      </div>
-    </>
+                  )
+                )}
+              </tr>
+              {excelData[sheetCount]?.rows
+                .slice(1)
+                .map((row: any, rowIndex: any) => (
+                  <tr>
+                    {row.cells.map((cell: any, cellIndex: any) => (
+                      <td
+                        scope="col"
+                        className="border px-2 py-1 h-10 border-smoke hover:bg-smoke focus-within:bg-smoke"
+                        key={cellIndex}
+                      >
+                        <input
+                          type="text"
+                          className="h-10 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
+                          value={cell.formula ? cell.value.result : cell.value}
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setExcelData((prev: any) => {
+                              prev[sheetCount].rows[rowIndex + 1].cells[
+                                cellIndex
+                              ].value = e.target.value;
+                              return [...prev];
+                            });
+                            console.log(excelData);
+                          }}
+                        />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+          <div></div>
+        </div>
+        <div className="flex w-[92vw] mx-auto overflow-auto gap-1">
+          {/* <button className={""}>Sheet 1</button> */}
+          {excelData.map((sheet: any, sheetIndex: any) => (
+            <button
+              key={sheetIndex}
+              onClick={() => setSheetCount(excelData.indexOf(sheet))}
+              className={
+                excelData.indexOf(sheet) == sheetCount
+                  ? `${sheetButtonStyles[2]}`
+                  : `${sheetButtonStyles[1]}`
+              }
+            >
+              {sheet.sheetName}
+            </button>
+          ))}
+        </div>
+      </>
+    )
   );
 }
 
