@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 function page() {
   const [excelData, setExcelData] = useState<any>([]);
+  const sheetCount = 0;
 
   function fetchExcelData() {
     const data = localStorage.getItem("encodedData");
@@ -12,11 +13,13 @@ function page() {
   }
   useEffect(() => {
     const data = localStorage.getItem("encodedData");
+    const decoded = JSON.parse(atob(data as string));
     if (data) {
-      setExcelData(JSON.parse(atob(data)));
+      setExcelData(decoded);
     }
-    console.log(excelData);
-  }, [excelData]);
+    console.log(decoded);
+  }, []);
+
   const index = 0;
 
   return (
@@ -27,97 +30,20 @@ function page() {
             &nbsp;
           </p>
           <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
+            1
           </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
-          <p className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-            b
-          </p>
+          {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
+            <p
+              className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
+              key={rowIndex}
+            >
+              {excelData[sheetCount]?.rows.indexOf(row) + 2}
+            </p>
+          ))}
         </div>
-
         <table className="min-w-full">
           <thead className="cursor-pointer">
             <tr>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
-              <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                header
-              </td>
               <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
                 header
               </td>
