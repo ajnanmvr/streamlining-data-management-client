@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
+
 const downloadExcelFile = async (excelData: String) => {
   try {
     const postData = {
@@ -65,6 +66,7 @@ export default function Page() {
     localStorage.setItem("encodedData", btoa(JSON.stringify(data)));
   }
 
+
   return (
     <div className="mt-5">
       <form
@@ -88,6 +90,7 @@ export default function Page() {
         </div>
         <a
           href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+          // download={true}
           className="mt-3 text-primary px-3 border border-white rounded-xl py-1 hover:border-primary ml-2"
         >
           Download Demo File
@@ -95,10 +98,13 @@ export default function Page() {
       </form>
       {excelData.length > 0 && (
         <>
-          <Link href="/project/edit" onClick={()=>setToLocalStorage(excelData)}>
+          <Link
+            href="/project/edit"
+            onClick={() => setToLocalStorage(excelData)}
+          >
             Go to edit page
           </Link>
-          {excelData.slice(0,3).map((sheet: any, sheetIndex: any) => (
+          {excelData.slice(0, 3).map((sheet: any, sheetIndex: any) => (
             <div className=" flex flex-col items-center" key={sheetIndex}>
               <hr className="border-2 border-dashed w-full border-primary mt-20 -mb-7" />
               <h2 className="p-3 bg-primary  rounded-xl w-48 text-white text-lg font-semibold text-center">
@@ -107,30 +113,34 @@ export default function Page() {
               <table className="table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
                 <thead>
                   <tr className="border-2 border-smoke">
-                    {sheet.headers.slice(0,3).map((header: any, rowIndex: any) => (
-                      <>
-                        <td
-                          className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
-                          key={rowIndex}
-                        >
-                          {header.value}
-                        </td>
-                      </>
-                    ))}
+                    {sheet.headers
+                      .slice(0, 3)
+                      .map((header: any, rowIndex: any) => (
+                        <>
+                          <td
+                            className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
+                            key={rowIndex}
+                          >
+                            {header.value}
+                          </td>
+                        </>
+                      ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {sheet.rows.slice(0,3).map((row: any, rowIndex: any) => (
+                  {sheet.rows.slice(0, 3).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke" key={rowIndex}>
-                      {row.cells.slice(0,3).map((cell: any, cellIndex: any) => (
-                        <td
-                          key={cellIndex}
-                          scope="col"
-                          className="border p-2 border-smoke"
-                        >
-                          {cell.formula ? cell.value.result : cell.value}
-                        </td>
-                      ))}
+                      {row.cells
+                        .slice(0, 3)
+                        .map((cell: any, cellIndex: any) => (
+                          <td
+                            key={cellIndex}
+                            scope="col"
+                            className="border p-2 border-smoke"
+                          >
+                            {cell.formula ? cell.value.result : cell.value}
+                          </td>
+                        ))}
                     </tr>
                   ))}
                 </tbody>
