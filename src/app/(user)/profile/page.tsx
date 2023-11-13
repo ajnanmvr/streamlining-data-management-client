@@ -29,6 +29,7 @@ export default function Profile() {
       {isPopupShow && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
             {isPopupShow && <div className='bg-green-200 w-96 flex flex-col justify-center p-5 gap-3'>
+        <p onClick={()=>setIsPopupShow(false)}>close</p>
         <input type="text" className='' />
         <input type="text" className='' />
     </div>}
