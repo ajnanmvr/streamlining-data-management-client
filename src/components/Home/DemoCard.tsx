@@ -73,8 +73,8 @@ const DemoCard = (props: Props) => {
       <div className="">
         <img
           src={props.item.features[selectedDescription].image}
-          alt=""
-          className="object-cover h-48 rounded-2xl lg:rounded-xl w-[1200px] lg:h-72"
+          alt="image"
+          className="object-cover border object-left-top h-48 rounded-2xl lg:rounded-xl w-[1200px] lg:h-72"
         />
       </div>
     </div>

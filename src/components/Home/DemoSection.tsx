@@ -10,10 +10,10 @@ const items = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga doloribus voluptates unde doloremque modi perspiciatis laboriosam. Laborum minus cumque fugit cupiditate tempore beatae fugiat! Temporibus earum hic quam voluptas odio.",
     features: [
-      { name: "Upload", image: "/1.avif" },
-      { name: "Edit", image: "/x.jpg" },
+      { name: "Upload", image: "/12.png" },
+      { name: "Edit", image: "/11.png" },
       { name: "Download", image: "/x.jpg" },
-      { name: "Populate", image: "/1.avif" },
+      { name: "Populate", image: "/12.png" },
     ],
   },
   {
@@ -22,10 +22,10 @@ const items = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga doloribus voluptates unde doloremque modi perspiciatis laboriosam. Laborum minus cumque fugit cupiditate tempore beatae fugiat! Temporibus earum hic quam voluptas odio.3",
     features: [
-      { name: "Profile", image: "/1.avif" },
-      { name: "Login", image: "/1.avif" },
-      { name: "Signin", image: "/x.jpg" },
-      { name: "Projects", image: "/1.avif" },
+      { name: "Profile", image: "/0.png" },
+      { name: "Login", image: "/login.png" },
+      { name: "Signin", image: "/register.png" },
+      { name: "Projects", image: "/projects.png" },
     ],
   },
   {
@@ -35,10 +35,10 @@ const items = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga doloribus voluptates unde doloremque modi perspiciatis laboriosam. Laborum minus cumque fugit cupiditate tempore beatae fugiat! Temporibus earum hic quam voluptas odio.1",
     features: [
-      { name: "Create", image: "/x.jpg" },
-      { name: "Delete", image: "/1.avif" },
-      { name: "Sandbox", image: "/1.avif" },
-      { name: "Organize", image: "/x.jpg" },
+      { name: "Create", image: "/create.png" },
+      { name: "Delete", image: "/register.png" },
+      { name: "Sandbox", image: "/12.png" },
+      { name: "Organize", image: "/projects.png" },
     ],
   },
   {
@@ -48,10 +48,10 @@ const items = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga doloribus voluptates unde doloremque modi perspiciatis laboriosam. Laborum minus cumque fugit cupiditate tempore beatae fugiat! Temporibus earum hic quam voluptas odio.2",
     features: [
-      { name: "Create", image: "/1.avif" },
-      { name: "Share", image: "/1.avif" },
+      { name: "Create", image: "/11.png" },
+      { name: "Share", image: "/create.png" },
       { name: "Delete", image: "/x.jpg" },
-      { name: "Manage", image: "/1.avif" },
+      { name: "Manage", image: "/create.png" },
     ],
   },
 ];
