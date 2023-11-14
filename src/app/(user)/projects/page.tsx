@@ -33,19 +33,17 @@ export default function Projects() {
     console.log(user);
   }, [user]);
 
-
-
   // logout function
   const logout = () => {
-
-    Axios.post('/users/logout').then((res) => {
-      setUser(null);
-      router.push('/login');
-    }).catch((err) => {
-      console.log(err);
-    })
-
-  }
+    Axios.post("/users/logout")
+      .then((res) => {
+        setUser(null);
+        router.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -66,14 +64,16 @@ export default function Projects() {
                 const projectData = JSON.stringify(project.data);
 
                 return (
-                  <div onClick={()=>{
-                    router.push(`/project/${project.id}`)
-                  }}>
-                  <Card
-                    key={project.id}
-                    name={project.name}
-                    sheets={JSON.parse(projectData).length}
-                  />
+                  <div
+                    onClick={() => {
+                      router.push(`/project/${project.id}`);
+                    }}
+                  >
+                    <Card
+                      key={project.id}
+                      name={project.name}
+                      sheets={JSON.parse(projectData).length}
+                    />
                   </div>
                 );
               })}
