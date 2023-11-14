@@ -2,18 +2,22 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="flex justify-between bg-primary text-white p-12">
+    <footer className="flex flex-col text-center items-center lg:text-left lg:items-start lg:flex-row justify-between bg-primary text-white p-12">
       <div className="flex flex-col justify-between">
-        <div>
-          <img src="/logo/logo-white.png" alt="logo" className="h-12" />
+        <div className="mb-10 lg:mb-0 lg:h-32">
+          <img
+            src="/logo/logo-white.png"
+            alt="logo"
+            className="h-12 w-40 object-contain"
+          />
         </div>
-        <p className="font-light text-sm opacity-80">
+        <p className="hidden lg:block font-light text-sm opacity-80 w-56">
           © Excelens Inc | All Rights Reserved
         </p>
       </div>
-      <div className="w-full lg:w-6/12 px-4">
-        <div className="flex flex-wrap items-top mb-6">
-          <div className="w-full lg:w-4/12 px-4 ml-auto">
+      <div className="w-full px-4">
+        <div className="flex flex-wrap sm:flex-nowrap items-top mb-6 justify-center lg:justify-end xl:mr-32 gap-20">
+          <div className="px-4 ">
             <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
               Filters
             </span>
@@ -52,7 +56,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="w-full lg:w-4/12 px-4">
+          <div className="px-4">
             <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
               Other Resources
             </span>
