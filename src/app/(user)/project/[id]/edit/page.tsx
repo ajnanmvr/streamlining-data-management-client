@@ -8,6 +8,7 @@ function page({ params }: { params: { id: string } }) {
   const [sheetCount, setSheetCount] = useState<number>(0);
   const [selectedRow, setSelectedRow] = useState<any>(0);
   const [updateModal, setUpdateModal] = useState<boolean>(false);
+  const [project , setProject] = useState<any>({})
   const alphabets = [
     "A",
     "B",
@@ -48,21 +49,22 @@ function page({ params }: { params: { id: string } }) {
     XLSX.writeFile(workbook, "DataSheet.xlsx");
   };
 
-  useEffect(() => {
-    const data = localStorage.getItem("encodedData");
-    const decoded = JSON.parse(atob(data as string));
-    if (data) {
-      setExcelData(decoded);
-    }
-    console.log(decoded);
-  }, []);
+  // useEffect(() => {
+  //   const data = localStorage.getItem("encodedData");
+  //   const decoded = JSON.parse(atob(data as string));
+  //   if (data) {
+  //     setExcelData(decoded);
+  //   }
+  //   console.log(decoded);
+  // }, []);
 
   useEffect(() => {
     const userId = params.id;
     Axios.get(`/projects/${userId}`)
       .then((res) => {
         console.log(res.data);
-        setExcelData(res.data);
+        setProject(res.data)
+        setExcelData(res.data?.data);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +73,17 @@ function page({ params }: { params: { id: string } }) {
   }, []);
 
   const saveData = () => {
-
+    Axios.patch(`/projects/${params.id}`, {
+      data: excelData,
+      name : project.name,
+      description : project.description
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -254,7 +266,7 @@ function page({ params }: { params: { id: string } }) {
             <button
               className="p-2 px-4 bg-primary text-white hover:bg-dark rounded-xl"
               onClick={() => {
-                downloadExcel(excelData);
+                saveData()
               }}
             >
               Save
