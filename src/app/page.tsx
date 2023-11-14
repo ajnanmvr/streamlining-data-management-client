@@ -7,13 +7,11 @@ export default function Home() {
 
   return (
     <main>
-      <div className='bg h-screen'>
+      <div className='bg h-screen flex flex-col justify-between'>
         <Header />
         <HeroSection />
+        <div></div>
       </div>
-      <DemoSection />
-      <DemoSection />
-      <DemoSection />
       <DemoSection />
       <Footer />
     </main>
