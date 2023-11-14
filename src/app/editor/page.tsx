@@ -144,19 +144,21 @@ function page() {
               </tr> */}
               {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
                 <tr>
-                  {Object.values(row)?.map((value,colIndex)=> (
+                  {Object.values(row)?.map((value, colIndex) => (
                     <td
-                    scope="col"
-                    className="border px-2 h-8 border-smoke hover:bg-smoke focus-within:bg-smoke"
-                    key={colIndex}
-                  >
-                    <input
-                      type="text"
-                      className="h-8 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
-                      value={value as string}
-                      // onChange={}
-                    />
-                  </td>
+                      scope="col"
+                      className="border px-2 h-8 border-smoke hover:bg-smoke focus-within:bg-smoke"
+                      key={colIndex}
+                    >
+                      <input
+                        type="text"
+                        className="h-8 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
+                        value={value as string}
+                        onChange={() => {
+                          row[Object.keys(row)[colIndex]]
+                        }}
+                      />
+                    </td>
                   ))}
                   {/* {row.cells.map((cell: any, cellIndex: any) => (
                       <td
