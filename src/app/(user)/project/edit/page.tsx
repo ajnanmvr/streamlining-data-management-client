@@ -6,6 +6,34 @@ function page() {
   const [sheetCount, setSheetCount] = useState<number>(0);
   const [selectedRow, setSelectedRow] = useState<any>(0);
   const [updateModal, setUpdateModal] = useState<boolean>(false);
+  const alphabets = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
 
   const sheetButtonStyles = {
     1: "hover:text-light hover:bg-smoke border-2 border-t-0 border-primary hover:border-light text-[15px] font-semibold rounded-b-xl text-primary px-3 pt-1 pb-2",
@@ -180,13 +208,11 @@ function page() {
           <table className="min-w-full">
             <thead className="cursor-pointer">
               <tr>
-                {excelData[sheetCount]?.rows[0].cells.map(
-                  (cell: any, cellIndex: any) => (
-                    <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                      {cell.address.slice(0, -1)}
-                    </td>
-                  )
-                )}
+                {alphabets.map((alphabet: any, alphabetIndex: any) => (
+                  <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
+                    {alphabet}
+                  </td>
+                ))}
               </tr>
             </thead>
             <tbody className="cursor-cell">
