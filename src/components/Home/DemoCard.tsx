@@ -10,7 +10,7 @@ const DemoCard = (props: Props) => {
   const [selectedDescription, setSelectedDescription] = useState<number>(0);
   return (
     <div
-      className={`flex flex-wrap-reverse lg:flex-nowrap p-32 justify-center gap-5 lg:gap-20 ${
+      className={`flex flex-wrap-reverse lg:flex-nowrap p-16 lg:p-32 justify-center gap-5 lg:gap-20 ${
         props.index % 2 == 0 ? "" : "flex-row-reverse"
       }`}
       id={`item-${props.index}`}
@@ -68,11 +68,11 @@ const DemoCard = (props: Props) => {
           ))}
         </div>
       </div>
-      <div className="block">
+      <div className="">
         <img
           src={props.item.features[selectedDescription].image}
           alt=""
-          className="object-cover rounded-xl w-[1200px] h-72"
+          className="object-cover rounded-2xl lg:rounded-xl w-[1200px] h-72"
         />
       </div>
     </div>
