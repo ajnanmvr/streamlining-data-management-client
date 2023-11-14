@@ -33,6 +33,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         downloadableData[index].rows.push(convertedData);
       });
     });
+
+    // ///////////////////////////////////.///////////////////////
     // sheet.headers.map((header: any, i: number) => {
     //   const format = header.format;
     //   var convertedData = {
@@ -51,13 +53,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     // Create a new workbook
     const workbook = new ExcelJS.Workbook();
+    // downloadableData.map(async (data: any, index: number) => {
+    //   const worksheet = workbook.addWorksheet(data.sheetName);
+    //   data.rows.map((cell: any, index: number) => {
+    //     var address = worksheet.getCell(cell.address);
+    //     var format = cell.format;
+    //     address.value = cell.value;
+    //     address.style = { font: format.font, fill: format.fill };
+    //   });
+    // });
     downloadableData.map(async (data: any, index: number) => {
       const worksheet = workbook.addWorksheet(data.sheetName);
-      data.rows.map((cell: any, index: number) => {
-        var address = worksheet.getCell(cell.address);
-        var format = cell.format;
-        address.value = cell.value;
-        address.style = { font: format.font, fill: format.fill };
+      data.rows.map((cells: any, index: number) => {
+        const rowValues = cells.map((cell:any) => cell.value);
+        worksheet.addRow(rowValues);
       });
     });
 
