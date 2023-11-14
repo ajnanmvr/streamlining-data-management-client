@@ -6,7 +6,35 @@ function page() {
   const [sheetCount, setSheetCount] = useState<number>(0);
   const [selectedRow, setSelectedRow] = useState<any>(0);
   const [updateModal, setUpdateModal] = useState<boolean>(false);
-  const [updateHeaderModal, setUpdateHeaderModal] = useState<boolean>(false);
+  const alphabets = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
   const sheetButtonStyles = {
     1: "hover:text-light hover:bg-smoke border-2 border-t-0 border-primary hover:border-light text-[15px] font-semibold rounded-b-xl text-primary px-3 pt-1 pb-2",
     2: "border-2 border-t-0 border-primary text-[15px] font-semibold rounded-b-xl text-white bg-primary px-3 pt-1 pb-2",
@@ -97,10 +125,10 @@ function page() {
                 className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
                 key={rowIndex}
                 onClick={() => {
+                  //delete row from excelData
                   setExcelData((prev: any) => {
-                    const updatedRows = prev[sheetCount].rows.filter(
-                      (_: any, index: any) => index !== rowIndex
-                    );
+                    const updatedRows = [...prev[sheetCount].rows];
+                    updatedRows.splice(rowIndex, 1);
                     const updatedSheet = {
                       ...prev[sheetCount],
                       rows: updatedRows,
@@ -108,6 +136,7 @@ function page() {
                     const updatedExcelData = [...prev];
                     updatedExcelData[sheetCount] = updatedSheet;
 
+                    console.log(updatedExcelData);
                     return updatedExcelData;
                   });
                 }}
@@ -153,51 +182,9 @@ function page() {
                       {
                         cells: prev[sheetCount].rows[0].cells.map(
                           (cell: any, cellIndex: any) => ({
-                            address: cell.address,
+                            address: "",
                             value: "",
-                            formula: "",
-                            format: {
-                              font: {
-                                color: {
-                                  theme: 1,
-                                },
-                                name: "Arial",
-                                scheme: "minor",
-                              },
-                              border: {
-                                left: {
-                                  style: "thick",
-                                  color: {
-                                    argb: "FF000000",
-                                  },
-                                },
-                                right: {
-                                  style: "thick",
-                                  color: {
-                                    argb: "FF000000",
-                                  },
-                                },
-                                top: {
-                                  style: "thick",
-                                  color: {
-                                    argb: "FF000000",
-                                  },
-                                },
-                                bottom: {
-                                  style: "thick",
-                                  color: {
-                                    argb: "FF000000",
-                                  },
-                                },
-                              },
-                              fill: {
-                                type: "pattern",
-                                pattern: "none",
-                              },
-                              alignment: {
-                                readingOrder: "ltr",
-                              },
-                            },
+                            format: {},
                           })
                         ),
                       }
@@ -221,13 +208,11 @@ function page() {
           <table className="min-w-full">
             <thead className="cursor-pointer">
               <tr>
-                {excelData[sheetCount]?.rows[0].cells.map(
-                  (cell: any, cellIndex: any) => (
-                    <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
-                      {cell.address.slice(0, -1)}
-                    </td>
-                  )
-                )}
+                {alphabets.map((alphabet: any, alphabetIndex: any) => (
+                  <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
+                    {alphabet}
+                  </td>
+                ))}
               </tr>
             </thead>
             <tbody className="cursor-cell">
