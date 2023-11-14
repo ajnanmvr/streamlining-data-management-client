@@ -131,7 +131,6 @@ function page() {
               {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
                 <tr>
                   {Object.values(row)?.map((value, colIndex) => (
-                  {Object.values(row)?.map((value, colIndex) => (
                     <td
                       scope="col"
                       className="border px-2 h-8 border-smoke hover:bg-smoke focus-within:bg-smoke"
