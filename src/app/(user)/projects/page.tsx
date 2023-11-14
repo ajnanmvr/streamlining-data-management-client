@@ -14,6 +14,13 @@ export default function Projects() {
   const router = useRouter();
   useEffect(() => {
     const userId = user?.id;
+
+    // Redirect to login if user.username not found
+    if (!user?.username) {
+      router.push('/login');
+      return;
+    }
+
     Axios.get(`/users/${userId}`)
       .then((res) => {
         setProfileUser(res.data);
@@ -46,7 +53,7 @@ export default function Projects() {
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
           {isPopupShow &&
           <CreateProject isPopupShow setIsPopupShow={setIsPopupShow}/>
-          
+        
           }
         </div>
       )}
