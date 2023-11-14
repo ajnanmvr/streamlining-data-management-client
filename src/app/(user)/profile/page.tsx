@@ -1,10 +1,10 @@
 "use client";
 import Card from "@/components/Card";
+import CreateProject from "@/components/Profile/CreateProject";
 import { useUserContext } from "@/context/User";
 import Axios from "@/utils/Axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Popup from "@/components/Profile/popup";
 import { useContext, useEffect, useState } from "react";
 export default function Profile() {
   const [profileUser, setProfileUser] = useState<any>();
@@ -44,11 +44,10 @@ export default function Profile() {
     <>
       {isPopupShow && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-          {isPopupShow && <div className='bg-green-200 w-96 flex flex-col justify-center p-5 gap-3'>
-            <p onClick={() => setIsPopupShow(false)}>close</p>
-            <input type="text" className='' />
-            <input type="text" className='' />
-          </div>}
+          {isPopupShow &&
+          <CreateProject isPopupShow setIsPopupShow={setIsPopupShow}/>
+          
+          }
         </div>
       )}
       {profileUser ? (
@@ -85,24 +84,19 @@ export default function Profile() {
           <div>
             <h1 className="text-2xl font-bold mb-5 ml-2">Project List</h1>
             <div className="flex flex-wrap justify-stretch  gap-5">
-              {/* <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card /> */}
               {profileUser.projects?.map((project: any) => {
                 const projectData = JSON.stringify(project.data);
 
                 return (
+                  <div onClick={()=>{
+                    router.push(`/project/${project.id}`)
+                  }}>
                   <Card
                     key={project.id}
                     name={project.name}
                     sheets={JSON.parse(projectData).length}
                   />
+                  </div>
                 );
               })}
               <Link href={"#"}>
