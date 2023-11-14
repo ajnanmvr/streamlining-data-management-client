@@ -19,19 +19,19 @@ type DataType = {
 };
 
 interface ContextProps {
-    user: DataType;
-    setUser: Dispatch<SetStateAction<DataType>>;
+    user: DataType | null;
+    setUser: Dispatch<SetStateAction<DataType | null>>;
 }
 
 const UserContext = createContext<ContextProps>({
-    user: {} as DataType,
-    setUser: (): DataType => {
-        return {} as DataType;
+    user: {} as DataType | null,
+    setUser: (): DataType | null => {
+        return {} as DataType | null;
     },
 });
 
 export const UserContextProvider = ({ children }: any) => {
-    const [user, setUser] = useState<DataType>({} as DataType);
+    const [user, setUser] = useState<DataType | null>({} as DataType || null);
 
     useEffect(() => {
        Axios.get('users/logged/check').then((data) => {
