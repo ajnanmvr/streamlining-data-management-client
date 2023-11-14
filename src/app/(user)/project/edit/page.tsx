@@ -141,7 +141,7 @@ function page() {
                   });
                 }}
               >
-                X{" "}
+                X
               </p>
             ))}
           </div>

@@ -45,7 +45,7 @@ export default function Profile() {
 
     Axios.post('/users/logout').then((res) => {
       setUser(null);
-      router.push('/login');
+      router.push('/');
     }).catch((err) => {
       console.log(err);
     })
@@ -108,7 +108,7 @@ export default function Profile() {
                   isEditMode ? "Submit" : "Edit Details"
 
                 }
-              </button>{" "}
+              </button>
               <button onClick={
                 logout
               } className="border-red-700 border rounded-lg text-white px-3 py-1 hover:bg-red-700 fill-red-700 hover:fill-white">
