@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <main>
-      <div className='bg'>
+      <div className='bg h-screen'>
         <Header />
         <HeroSection />
       </div>
