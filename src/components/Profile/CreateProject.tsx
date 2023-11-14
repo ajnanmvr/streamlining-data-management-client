@@ -82,7 +82,7 @@ function CreateProject(
     e.preventDefault()
     // submit form
     // send data to backend
-    Axios.post('/project',{
+    Axios.post('/projects',{
       name,
       description,
       isPublic,
