@@ -51,7 +51,7 @@ function page() {
             </div>
           </div>
         )}
-        <div className="flex w-[92vw] mt-10 mx-auto overflow-auto h-[69vh] relative">
+        <div className="flex w-[92vw] mt-10 mx-auto overflow-auto max-h-[69vh] relative">
           <div className="sticky left-0 bg-white cursor-pointer">
             <p className="border-2 px-2 py-1 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary rounded-tl-xl">
               &nbsp;
