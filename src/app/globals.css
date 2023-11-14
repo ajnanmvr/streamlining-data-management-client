@@ -6,17 +6,3 @@
   background-size: cover;
 }
 
-::-webkit-scrollbar {
-  width: 1px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #0F5533;
-  border-radius: 0 5px 5px 0;
-}
-
-::-webkit-scrollbar-track {
-  background: #9fada6;
-  border-radius: 0 5px 5px 0;
-}

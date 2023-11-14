@@ -33,19 +33,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         downloadableData[index].rows.push(convertedData);
       });
     });
-    sheet.headers.map((header: any, i: number) => {
-      const format = header.format;
-      var convertedData = {
-        value: header.value,
-        address: header.address,
-        format: {
-          font: format.font,
-          fill: format.fill,
-        },
-        formula: header.formula,
-      };
-      downloadableData[index].rows.push(convertedData);
-    });
+    // sheet.headers.map((header: any, i: number) => {
+    //   const format = header.format;
+    //   var convertedData = {
+    //     value: header.value,
+    //     address: header.address,
+    //     format: {
+    //       font: format.font,
+    //       fill: format.fill,
+    //     },
+    //     formula: header.formula,
+    //   };
+    //   downloadableData[index].rows.push(convertedData);
+    // });
   });
 
   try {

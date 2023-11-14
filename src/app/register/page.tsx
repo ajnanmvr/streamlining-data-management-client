@@ -44,7 +44,7 @@ export default function Signup() {
     <div className="flex w-screen h-screen bg-smoke items-center justify-center bg">
       <form
         onSubmit={submitForm}
-        className="bg-white flex flex-col h-fit md:w-96  md:p-10 rounded-xl gap-3 items-center"
+        className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center"
       >
         <div className="w-20">
           <img
