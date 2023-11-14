@@ -59,33 +59,6 @@ function page() {
   return (
     excelData.length > 0 && (
       <>
-        {/* {updateHeaderModal && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
-            <div className="bg-green-200 w-96 flex flex-col justify-center p-5 mx-12 gap-3">
-              <p onClick={() => setUpdateHeaderModal(false)}>close</p>
-              {excelData[sheetCount]?.headers.map(
-                (cell: any, cellIndex: any) => (
-                  <input
-                    type="text"
-                    key={cellIndex}
-                    value={cell.formula ? cell.value.result : cell.value}
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                      setExcelData((prev: any) => {
-                        prev[sheetCount].rows[selectedRow].cells[
-                          cellIndex
-                        ].value = e.target.value;
-                        return [...prev];
-                      });
-                      console.log(excelData);
-                    }}
-                  />
-                )
-              )}
-              <p onClick={() => setUpdateHeaderModal(false)}>Save</p>
-            </div>
-          </div>
-        )} */}
         {updateModal && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
             <div className="bg-green-200 w-96 flex flex-col justify-center p-5 mx-12 gap-3">
@@ -118,33 +91,131 @@ function page() {
             <p className="border-2 px-2 py-1 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary rounded-tl-xl">
               &nbsp;
             </p>
+
             {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
-              <div className="flex">
-                <p
-                  className="text-red-600 p-2"
-                  onClick={() => {
-                    setExcelData((prev: any) => {
-                      prev[sheetCount].rows.splice(
-                        excelData[sheetCount]?.rows.indexOf(row),
-                        1
-                      );
-                      return [...prev];
-                    });
-                  }}
-                >
-                  X
-                </p>
-                <p
-                  className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
-                  key={rowIndex}
-                  onClick={() => {
-                    setSelectedRow(excelData[sheetCount]?.rows.indexOf(row)),
-                      setUpdateModal(true);
-                  }}
-                >
-                  {excelData[sheetCount]?.rows.indexOf(row) + 1}
-                </p>
-              </div>
+              <p
+                className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
+                key={rowIndex}
+                onClick={() => {
+                  setExcelData((prev: any) => {
+                    const updatedRows = prev[sheetCount].rows.filter(
+                      (_: any, index: any) => index !== rowIndex
+                    );
+                    const updatedSheet = {
+                      ...prev[sheetCount],
+                      rows: updatedRows,
+                    };
+                    const updatedExcelData = [...prev];
+                    updatedExcelData[sheetCount] = updatedSheet;
+
+                    return updatedExcelData;
+                  });
+                }}
+              >
+                X{" "}
+              </p>
+            ))}
+          </div>
+          <div className="sticky left-0 bg-white cursor-pointer">
+            <p className="border-2 px-2 py-1 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary ">
+              &nbsp;
+            </p>
+
+            {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
+              <p
+                className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
+                key={rowIndex}
+                onClick={() => {
+                  setSelectedRow(excelData[sheetCount]?.rows.indexOf(row)),
+                    setUpdateModal(true);
+                }}
+              >
+                {excelData[sheetCount]?.rows.indexOf(row) + 1}
+              </p>
+            ))}
+          </div>
+          <div className="sticky left-0 bg-white cursor-pointer">
+            <p className="border-2 px-2 py-1 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
+              &nbsp;
+            </p>
+
+            {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
+              <p
+                className="border-2 px-2 py-1 h-10 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary"
+                key={rowIndex}
+                onClick={() => {
+                  setExcelData((prev: any) => {
+                    const updatedRows = [...prev[sheetCount].rows];
+                    updatedRows.splice(
+                      rowIndex + 1,
+                      0,
+                      // Add only one empty row
+                      {
+                        cells: prev[sheetCount].rows[0].cells.map(
+                          (cell: any, cellIndex: any) => ({
+                            address: cell.address,
+                            value: "",
+                            formula: "",
+                            format: {
+                              font: {
+                                color: {
+                                  theme: 1,
+                                },
+                                name: "Arial",
+                                scheme: "minor",
+                              },
+                              border: {
+                                left: {
+                                  style: "thick",
+                                  color: {
+                                    argb: "FF000000",
+                                  },
+                                },
+                                right: {
+                                  style: "thick",
+                                  color: {
+                                    argb: "FF000000",
+                                  },
+                                },
+                                top: {
+                                  style: "thick",
+                                  color: {
+                                    argb: "FF000000",
+                                  },
+                                },
+                                bottom: {
+                                  style: "thick",
+                                  color: {
+                                    argb: "FF000000",
+                                  },
+                                },
+                              },
+                              fill: {
+                                type: "pattern",
+                                pattern: "none",
+                              },
+                              alignment: {
+                                readingOrder: "ltr",
+                              },
+                            },
+                          })
+                        ),
+                      }
+                    );
+                    const updatedSheet = {
+                      ...prev[sheetCount],
+                      rows: updatedRows,
+                    };
+                    const updatedExcelData = [...prev];
+                    updatedExcelData[sheetCount] = updatedSheet;
+
+                    console.log(updatedExcelData);
+                    return updatedExcelData;
+                  });
+                }}
+              >
+                +
+              </p>
             ))}
           </div>
           <table className="min-w-full">
