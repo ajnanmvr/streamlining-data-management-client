@@ -35,15 +35,12 @@ function page() {
     "Y",
     "Z",
   ];
-  const sheetButtonStyles = {
-    1: "hover:text-light hover:bg-smoke border-2 border-t-0 border-primary hover:border-light text-[15px] font-semibold rounded-b-xl text-primary px-3 pt-1 pb-2",
-    2: "border-2 border-t-0 border-primary text-[15px] font-semibold rounded-b-xl text-white bg-primary px-3 pt-1 pb-2",
-  };
+
 
   const downloadExcel = (data: any) => {
     const workbook = XLSX.utils.book_new();
     data.map((sheet: any) => {
-  
+
       const worksheet = XLSX.utils.json_to_sheet(sheet.rows);
       XLSX.utils.book_append_sheet(workbook, worksheet, sheet.sheetName);
       //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
@@ -52,7 +49,7 @@ function page() {
     XLSX.writeFile(workbook, "DataSheet.xlsx");
   };
 
-  
+
   useEffect(() => {
     const data = localStorage.getItem("encodedData");
     const decoded = JSON.parse(atob(data as string));
@@ -67,36 +64,40 @@ function page() {
       <>
         {updateModal && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
-            <div className="bg-green-200 w-96 flex flex-col justify-center p-5 mx-12 gap-3">
-              <p onClick={() => setUpdateModal(false)}>close</p>
-              {excelData[sheetCount]?.rows.map(
-                (cell: any, cellIndex: any) => {
-                  if(cellIndex == selectedRow){
-                    return(
-                      Object.values(cell).map((value, colIndex) => (
+            <div className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center relative">
+              <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => setUpdateModal(false)}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></button>
+              <h1 className="text-center font-semibold text-2xl">Edit <span className="font-extrabold text-primary">The Row</span></h1>
 
-                        <input
-                          type="text"
-                          key={cellIndex}
-                          value={value as string}
-                          onChange={(e) => {
-                            console.log(e.target.value);
-                            setExcelData((prev: any) => {
-                              prev[sheetCount].rows[cellIndex][Object.keys(cell)[colIndex]] = e.target.value;
-                              return [...prev];
-                            });
-                            console.log(excelData);
-                          }}
-                        />
-                      
-                    ))
-                    )
-                    
-                  
+              <div className="max-h-[70vh] overflow-auto m-auto">
+                {excelData[sheetCount]?.rows.map(
+                  (cell: any, cellIndex: any) => {
+                    if (cellIndex == selectedRow) {
+                      return (
+                        Object.values(cell).map((value, colIndex) => (
+
+                          <input
+                            type="text"
+                            key={cellIndex}
+                            value={value as string}
+                            className="px-3 py-2 rounded-lg border my-1 focus:border-primary w-full"
+                            onChange={(e) => {
+                              console.log(e.target.value);
+                              setExcelData((prev: any) => {
+                                prev[sheetCount].rows[cellIndex][Object.keys(cell)[colIndex]] = e.target.value;
+                                return [...prev];
+                              });
+                              console.log(excelData);
+                            }}
+                          />
+
+                        ))
+                      )
+
+
+                    }
                   }
-                 }
-              )}
-              <p onClick={() => setUpdateModal(false)}>Save</p>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -129,7 +130,7 @@ function page() {
 
           <table className="min-w-full">
             <thead className="cursor-pointer">
-              <tr>
+              <tr className="sticky top-0">
                 {alphabets.map((alphabet: any, alphabetIndex: any) => (
                   <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
                     {alphabet}
@@ -142,13 +143,13 @@ function page() {
                 .slice(0, 1)
                 .map((row: any, rowIndex: any) => (
                   <tr className="border border-smoke">
-                      {Object.keys(row)
-                        ?.map((key, colIndex) => (
-                          <td scope="col" className="border p-2 border-smoke">
-                            {key as unknown as string}
-                          </td>
-                        ))}
-                    </tr>
+                    {Object.keys(row)
+                      ?.map((key, colIndex) => (
+                        <td scope="col" className="border p-2 border-smoke">
+                          {key as unknown as string}
+                        </td>
+                      ))}
+                  </tr>
                 ))}
               {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
                 <tr>
@@ -202,30 +203,26 @@ function page() {
           </table>
           <div></div>
         </div>
-        <div className="flex w-[92vw] mx-auto overflow-auto gap-1">
-          {/* <button className={""}>Sheet 1</button> */}
-          {excelData.map((sheet: any, sheetIndex: any) => (
+        <div className="fixed bottom-0 w-screen flex justify-center">
+          <div className="py-5 px-8  bg-white shadow-2xl rounded-t-2xl flex gap-2 font-semibold">          {excelData.map((sheet: any, sheetIndex: any) => (
             <button
               key={sheetIndex}
+              className="p-2 px-4 bg-smoke hover:bg-smoker rounded-xl"
               onClick={() => setSheetCount(excelData.indexOf(sheet))}
-              className={
-                excelData.indexOf(sheet) == sheetCount
-                  ? `${sheetButtonStyles[2]}`
-                  : `${sheetButtonStyles[1]}`
-              }
+
             >
               {sheet.sheetName}
             </button>
           ))}
 
-<button
-            className="bg-primary rounded-lg text-white p-2"
-            onClick={() => {
-              downloadExcel(excelData);
-            }}
-          >
-            Download excel file
-          </button>
+            <button
+              className="p-2 px-4 bg-primary text-white hover:bg-dark rounded-xl"
+              onClick={() => {
+                downloadExcel(excelData);
+              }}
+            >
+              Download
+            </button></div>
         </div>
       </>
     )
