@@ -1,8 +1,20 @@
 # Streamlining Data Management
-This web app is to edit your Excel project of a specific model of an application.
-<img src="">
+Developing an Excel File Upload and Form Population System
 
-# Demo
-[View demo]() : https://
-## Sample file
-[Download File](https://res.cloudinary.com/dx4ccftyk/raw/upload/v1688878129/avatars/Demo_File.csv)
+## Problem Description
+
+To streamline data management, we aim to create a system facilitating easy Excel file uploads. Users can select specific data lines, automatically populating a form. This system enables seamless data updates, saving, and Excel-format downloads, reducing the cumbersome nature of Excel data handling.
+
+# client 
+
+Github Repo : https://github.com/ajnanmvr/streamlining-data-management-client
+Hosted : https://streamlining-data-management-client.vercel.app/
+
+# server
+
+Github Repo : https://github.com/MuhammedHashimT/streamlining-data-management-api
+Hosted : https://gta-rho.vercel.app/
+
+
+# Team
+Farrago
