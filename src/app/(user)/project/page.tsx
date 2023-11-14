@@ -111,20 +111,6 @@ export default function Page() {
                 Sample Preview
               </h2>
               <table className="border border-primary table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
-                <thead>
-                  <tr className="border-2 border-smoke">
-                    {sheet.headers.slice(0, 5).map((header: any, rowIndex: any) => (
-                      <>
-                        <td
-                          className="border-2 p-2 bg-primary font-semibold text-white capitalize border-primary"
-                          key={rowIndex}
-                        >
-                          {header.value}
-                        </td>
-                      </>
-                    ))}
-                  </tr>
-                </thead>
                 <tbody>
                   {sheet.rows.slice(0, 5).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke" key={rowIndex}>
