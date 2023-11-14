@@ -142,11 +142,23 @@ function page() {
                   )
                 )}
               </tr> */}
-              {excelData[sheetCount]?.rows
-                .slice(1)
-                .map((row: any, rowIndex: any) => (
-                  <tr>
-                    {row.cells.map((cell: any, cellIndex: any) => (
+              {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
+                <tr>
+                  {Object.values(row)?.map((value,colIndex)=> (
+                    <td
+                    scope="col"
+                    className="border px-2 h-8 border-smoke hover:bg-smoke focus-within:bg-smoke"
+                    key={colIndex}
+                  >
+                    <input
+                      type="text"
+                      className="h-8 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
+                      value={value as string}
+                      // onChange={}
+                    />
+                  </td>
+                  ))}
+                  {/* {row.cells.map((cell: any, cellIndex: any) => (
                       <td
                         scope="col"
                         className="border px-2 h-8 border-smoke hover:bg-smoke focus-within:bg-smoke"
@@ -168,9 +180,9 @@ function page() {
                           }}
                         />
                       </td>
-                    ))}
-                  </tr>
-                ))}
+                    ))} */}
+                </tr>
+              ))}
             </tbody>
           </table>
           <div></div>

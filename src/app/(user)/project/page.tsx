@@ -211,7 +211,7 @@ export default function Page() {
                   {sheet.rows.slice(0, 1).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke">
                       {Object.keys(row)
-                        .slice(0, 3)
+                        .slice(0, 5)
                         ?.map((key, colIndex) => (
                           <td scope="col" className="border p-2 border-smoke">
                             {key as unknown as ReactNode}
@@ -222,7 +222,7 @@ export default function Page() {
                   {sheet.rows.slice(0, 3).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke">
                       {Object.values(row)
-                        .slice(0, 3)
+                        .slice(0, 5)
                         ?.map((value, colIndex) => (
                           <td scope="col" className="border p-2 border-smoke">
                             {value as unknown as ReactNode}

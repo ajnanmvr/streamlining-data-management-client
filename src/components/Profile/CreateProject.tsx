@@ -1,7 +1,9 @@
 "use client"
 import Axios from '@/utils/Axios'
-import React from 'react'
+import Link from 'next/link'
+import React , {useState} from 'react'
 import * as XLSX from "xlsx";
+
 
 interface Props {
   isPopupShow: boolean
@@ -15,8 +17,8 @@ function CreateProject(
   const [name, setName] = React.useState('')
   const [description, setDescription] = React.useState('')
   const [isPublic, setIsPublic] = React.useState(true)
-  const [file, setFile] = React.useState('')
-  const [excelData, setExcelData] = React.useState<any>([]);
+  const [file, setFile] = React.useState<File | null>()
+  const [excelData, setExcelData] = useState<any>([]);
 
 
   const readExcel = (file: any) => {
@@ -69,7 +71,16 @@ function CreateProject(
     });
   };
 
-  const submitForm = (e: any) => {
+  const uploadFile = (e:any) => {
+
+      setFile(e.target?.files ? e.target?.files[0] : null)
+      readExcel(e.target?.files ? e.target?.files[0] : null)
+
+  }
+
+  const submitForm = (e : any)=>{
+
+
     e.preventDefault()
     // submit form
     // send data to backend
@@ -148,10 +159,8 @@ function CreateProject(
 
       <input type="file" name='file' className='file:border-primary border border-primary rounded-xl uppercase file:border file:mr-3 file:rounded-lg file:text-white file:px-3 file:py-1 file:hover:bg-light file:bg-primary file:font-semibold text-sm w-50 my-3' value={file}
         onChange={
-          (e) => {
-            setFile(e.target.value)
-          }
-        }
+          uploadFile
+         }
       />
 
           <button type='submit' className='border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary'>Create</button>
