@@ -64,10 +64,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // });
     downloadableData.map(async (data: any, index: number) => {
       const worksheet = workbook.addWorksheet(data.sheetName);
-      data.rows.map((cells: any, index: number) => {
-        const rowValues = cells.map((cell:any) => cell.value);
+      // data.rows.map((cell: any, index: number) => {
+      //   console.log(cells);
+        
+        const rowValues = data.rows.map((cell: any, index: number) => cell.value);
         worksheet.addRow(rowValues);
-      });
+      // });
     });
 
     // Generate the Excel file
