@@ -1,8 +1,9 @@
 "use client"
 import Axios from '@/utils/Axios'
 import Link from 'next/link'
-import React from 'react'
+import React , {useState} from 'react'
 import * as XLSX from "xlsx";
+
 
 interface Props {
   isPopupShow : boolean
@@ -16,8 +17,8 @@ function CreateProject(
   const [name, setName] = React.useState('')
   const [description, setDescription] = React.useState('')
   const [isPublic, setIsPublic] = React.useState(true)
-  const [file, setFile] = React.useState('')
-  const [excelData, setExcelData] = React.useState<any>([]);
+  const [file, setFile] = React.useState<File | null>()
+  const [excelData, setExcelData] = useState<any>([]);
 
 
   const readExcel = (file: any) => {
@@ -68,11 +69,20 @@ function CreateProject(
     });
   };
 
+  const uploadFile = (e:any) => {
+
+      setFile(e.target?.files ? e.target?.files[0] : null)
+      readExcel(e.target?.files ? e.target?.files[0] : null)
+
+  }
+
   const submitForm = (e : any)=>{
+
+
     e.preventDefault()
     // submit form
     // send data to backend
-    Axios.post('/projects',{
+    Axios.post('/project',{
       name,
       description,
       isPublic,
@@ -137,11 +147,9 @@ function CreateProject(
 
           <div className='flex justify-between'>
             <div className='flex gap-2'>
-              <input type="file" name='file' className='' value={file}
+              <input type="file" name='file' className='' 
               onChange={
-                (e)=>{
-                  setFile(e.target.value)
-                }
+               uploadFile
               }
               />
               
