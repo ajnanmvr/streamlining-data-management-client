@@ -116,34 +116,21 @@ function page() {
               </tr>
             </thead>
             <tbody className="cursor-cell">
-              {/* <tr>
-                {excelData[sheetCount]?.headers.map(
-                  (header: any, headerIndex: any) => (
-                    <td
-                      scope="col"
-                      className="border px-2 h-8 border-smoke hover:bg-smoke focus-within:bg-smoke"
-                      key={headerIndex}
-                    >
-                      <input
-                        type="text"
-                        className="h-8 border-smoke focus:outline-none focus-within:bg-smoke font-bold bg-transparent"
-                        value={header.value}
-                        onChange={(e) => {
-                          console.log(e.target.value);
-                          setExcelData((prev: any) => {
-                            prev[sheetCount].headers[headerIndex].value =
-                              e.target.value;
-                            return [...prev];
-                          });
-                          console.log(excelData);
-                        }}
-                      />
-                    </td>
-                  )
-                )}
-              </tr> */}
+              {excelData[sheetCount].rows
+                .slice(0, 1)
+                .map((row: any, rowIndex: any) => (
+                  <tr className="border border-smoke">
+                      {Object.keys(row)
+                        ?.map((key, colIndex) => (
+                          <td scope="col" className="border p-2 border-smoke">
+                            {key as unknown as string}
+                          </td>
+                        ))}
+                    </tr>
+                ))}
               {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
                 <tr>
+                  {Object.values(row)?.map((value, colIndex) => (
                   {Object.values(row)?.map((value, colIndex) => (
                     <td
                       scope="col"
