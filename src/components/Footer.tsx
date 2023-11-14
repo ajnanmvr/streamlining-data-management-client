@@ -19,46 +19,46 @@ function Footer() {
         <div className="flex flex-wrap sm:flex-nowrap items-top mb-6 justify-center lg:justify-end xl:mr-32 gap-20">
           <div className="px-4 ">
             <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-              Filters
+              Features
             </span>
             <ul className="list-unstyled opacity-80">
               <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                  href="/essentials"
+                  href="/sheets"
                 >
-                  Essentials
+                  Sheets
                 </a>
               </li>
               <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                  href="/stationary"
+                  href="/projects"
                 >
-                  Stationary
+                  Projects
                 </a>
               </li>
               <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                  href="/book-cell"
+                  href="/organizations"
                 >
-                  Book Cell
+                  Organizations
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                   href="/tea-stall"
                 >
                   Tea Stall
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="px-4">
             <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-              Other Resources
+              Resources
             </span>
             <ul className="list-unstyled opacity-80 ">
               <li>
@@ -66,7 +66,7 @@ function Footer() {
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                   href="/login"
                 >
-                  Admin Login
+                  Login
                 </a>
               </li>
               <li>
@@ -74,10 +74,10 @@ function Footer() {
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                   href="#"
                 >
-                  Terms &amp; Conditions
+                  Docs
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                   href="#"
@@ -92,7 +92,7 @@ function Footer() {
                 >
                   Contact Us
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
