@@ -3,6 +3,7 @@ import Card from "@/components/Card";
 import { useUserContext } from "@/context/User";
 import Axios from "@/utils/Axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Popup from "@/components/Profile/popup";
 import { useContext, useEffect, useState } from "react";
 export default function Profile() {
@@ -10,6 +11,7 @@ export default function Profile() {
   const [isPopupShow, setIsPopupShow] = useState<any>();
   const { setUser, user } = useUserContext();
 
+  const router = useRouter();
   useEffect(() => {
     const userId = user?.id;
     Axios.get(`/users/${userId}`)
@@ -24,15 +26,29 @@ export default function Profile() {
     console.log(user);
   }, [user]);
 
+
+
+  // logout function
+  const logout = () => {
+
+    Axios.post('/users/logout').then((res) => {
+      setUser(null);
+      router.push('/login');
+    }).catch((err) => {
+      console.log(err);
+    })
+
+  }
+
   return (
     <>
       {isPopupShow && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-            {isPopupShow && <div className='bg-green-200 w-96 flex flex-col justify-center p-5 gap-3'>
-        <p onClick={()=>setIsPopupShow(false)}>close</p>
-        <input type="text" className='' />
-        <input type="text" className='' />
-    </div>}
+          {isPopupShow && <div className='bg-green-200 w-96 flex flex-col justify-center p-5 gap-3'>
+            <p onClick={() => setIsPopupShow(false)}>close</p>
+            <input type="text" className='' />
+            <input type="text" className='' />
+          </div>}
         </div>
       )}
       {profileUser ? (
