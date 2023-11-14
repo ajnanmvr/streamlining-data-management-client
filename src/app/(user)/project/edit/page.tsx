@@ -1,5 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
+
+const downloadExcel = (data: any) => {
+  const workbook = XLSX.utils.book_new();
+  data.map((sheet: any) => {
+
+    const worksheet = XLSX.utils.json_to_sheet(sheet.rows);
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheet.sheetName);
+    //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+    //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+  });
+  XLSX.writeFile(workbook, "DataSheet.xlsx");
+};
 
 function page() {
   const [excelData, setExcelData] = useState<any>([]);
@@ -49,40 +62,40 @@ function page() {
     console.log(decoded);
   }, []);
 
-  const downloadExcelFile = async (excelData: String) => {
-    try {
-      const postData = {
-        data: excelData,
-      };
-      // Make a POST request to the Excel API route
-      const response = await fetch("/api/excel/download", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", // Specify the content type if sending JSON data
-        },
-        body: JSON.stringify(postData),
-      });
+  // const downloadExcelFile = async (excelData: String) => {
+  //   try {
+  //     const postData = {
+  //       data: excelData,
+  //     };
+  //     // Make a POST request to the Excel API route
+  //     const response = await fetch("/api/excel/download", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json", // Specify the content type if sending JSON data
+  //       },
+  //       body: JSON.stringify(postData),
+  //     });
 
-      if (response.ok) {
-        // Convert the response to a Blob and create a URL for downloading
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
+  //     if (response.ok) {
+  //       // Convert the response to a Blob and create a URL for downloading
+  //       const blob = await response.blob();
+  //       const url = window.URL.createObjectURL(blob);
 
-        // Create a download link and trigger the download
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "Excel.xlsx";
-        a.click();
+  //       // Create a download link and trigger the download
+  //       const a = document.createElement("a");
+  //       a.href = url;
+  //       a.download = "Excel.xlsx";
+  //       a.click();
 
-        // Clean up by revoking the URL
-        window.URL.revokeObjectURL(url);
-      } else {
-        console.error("Failed to generate Excel file.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //       // Clean up by revoking the URL
+  //       window.URL.revokeObjectURL(url);
+  //     } else {
+  //       console.error("Failed to generate Excel file.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
   return (
     excelData.length > 0 && (
@@ -141,7 +154,7 @@ function page() {
                   });
                 }}
               >
-                X{" "}
+                X
               </p>
             ))}
           </div>
@@ -265,7 +278,7 @@ function page() {
           <button
             className="bg-primary rounded-lg text-white p-2"
             onClick={() => {
-              downloadExcelFile(excelData);
+              downloadExcel(excelData);
             }}
           >
             Download excel file
