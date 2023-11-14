@@ -233,7 +233,7 @@ export default function Page() {
                   <tr className=" border bg-smoke hover:bg-smoker">
                     <td colSpan={5}>
                       <Link
-                        href="/project/edit"
+                        href="/editor"
                         onClick={() => setToLocalStorage(excelData)}
                       >
                         <h2 className="p-2 w-full text-primary font-semibold text-center">
