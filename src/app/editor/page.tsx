@@ -88,17 +88,19 @@ function page() {
           <table className="min-w-full">
             <thead className="cursor-pointer">
               <tr >
-                {excelData[sheetCount]?.headers.map(
+                {/* {excelData[sheetCount]?.headers.map(
                   (header: any, headerIndex: any) => (
                     <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
                       {header.address.slice(0, -1)}
                     </td>
                   )
-                )}
+                )} */}
+                <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
+HI                    </td>
               </tr>
             </thead>
             <tbody className="cursor-cell">
-              <tr>
+              {/* <tr>
                 {excelData[sheetCount]?.headers.map(
                   (header: any, headerIndex: any) => (
                     <td
@@ -123,7 +125,7 @@ function page() {
                     </td>
                   )
                 )}
-              </tr>
+              </tr> */}
               {excelData[sheetCount]?.rows
                 .slice(1)
                 .map((row: any, rowIndex: any) => (
