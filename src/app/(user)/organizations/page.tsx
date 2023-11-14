@@ -55,7 +55,7 @@ export default function Organizations() {
           <div>
             <h1 className="text-2xl font-bold mb-5 ml-2">Project List</h1>
             <div className="flex flex-wrap justify-stretch  gap-5">
-              {profileUser.projects?.map((project: any) => {
+              {profileUser.organizations?.map((project: any) => {
                 const projectData = JSON.stringify(project.data);
 
                 return (

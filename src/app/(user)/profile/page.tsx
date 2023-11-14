@@ -9,7 +9,15 @@ import { useContext, useEffect, useState } from "react";
 export default function Profile() {
   const [profileUser, setProfileUser] = useState<any>();
   const [isPopupShow, setIsPopupShow] = useState<any>();
+  const [isEditMode , setIsEditMode] = useState<boolean>(false)
   const { setUser, user } = useUserContext();
+
+
+  const [FirstName, setFirstName] = useState<any>(profileUser?.FirstName);
+  const [LastName, setLastName] = useState<any>(profileUser?.LastName);
+  const [email, setEmail] = useState<any>(profileUser?.email);
+
+
 
   const router = useRouter();
   useEffect(() => {
@@ -18,6 +26,10 @@ export default function Profile() {
       .then((res) => {
         setProfileUser(res.data);
         console.log(res.data);
+        
+    setEmail(res.data?.email)
+    setFirstName(res.data?.FirstName)
+    setLastName(res.data?.LastName)
       })
       .catch((err) => {
         console.log(err);
@@ -58,15 +70,44 @@ export default function Profile() {
             </div>
             <p className="text-center -mb-1">Welcome</p>
             <p className="font-bold text-2xl text-center my-1 text-primary leading-[23px]">
-              {profileUser.FirstName + " " + profileUser.LastName}
-            </p>
-            <p className="text-center">{profileUser.email}</p>
+             {
+              !isEditMode ? 
+                profileUser.FirstName + " " + profileUser.LastName
+               : (
+                <>
+                <input type="text" value={FirstName}  onChange={()=>{
+                  setFirstName(FirstName)
+                }}  />
+                <input type="text" value={LastName} onChange={()=>{
+                  setLastName(LastName)
+                }} />
+                </>
+              )
+             }
+
+            </p>{
+              isEditMode ? (
+                <>
+                <input type="text" value={email} onChange={()=>{
+                  setEmail(email)
+                }} />
+                </>
+              ) :
+              <>
+               <p className="text-center">{profileUser.email}</p>
+               </>
+            }
             <button className="text-sm text-primary mt-3 mb-1">
               Change Password
             </button>
             <div className="flex gap-2 mt-1">
-              <button className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary">
-                Edit Details
+              <button onClick={()=>{
+                setIsEditMode(!isEditMode)
+              }} className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary">
+                {
+                  isEditMode ? "Submit" : "Edit Details"
+
+                }
               </button>{" "}
               <button onClick={
                 logout
