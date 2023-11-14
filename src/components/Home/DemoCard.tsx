@@ -10,20 +10,20 @@ const DemoCard = (props: Props) => {
   const [selectedDescription, setSelectedDescription] = useState<number>(0);
   return (
     <div
-      className={`flex p-32 justify-center gap-20 ${
+      className={`flex flex-wrap-reverse lg:flex-nowrap p-32 justify-center gap-5 lg:gap-20 ${
         props.index % 2 == 0 ? "" : "flex-row-reverse"
       }`}
       id={`item-${props.index}`}
     >
-      <div className="flex flex-col gap-2 justify-center">
+      <div className="flex flex-col gap-2 justify-center items-center text-center lg:items-start lg:text-left">
         <p className="text-primary font-semibold">#Basic Features</p>
         <h1 className="text-center lg:text-left font-bold text-3xl">
           {props.item.heading}
         </h1>
-        <p className="text-sm">{props.item.description}</p>
+        <p className="lg:text-sm">{props.item.description}</p>
         <div className="flex gap-1 mt-2">
           <button className="text-[15px] font-semibold rounded-full text-primary hover:bg-smoker bg-smoke px-3 py-1 flex items-center gap-1">
-            Learn More{" "}
+            Learn More
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-[11px] fill-primary"
@@ -49,7 +49,7 @@ const DemoCard = (props: Props) => {
                   className={`font-bold text-[30px] font-sans- px-1 leading-[40px] border border-dashed rounded-lg ${
                     selectedDescription == index
                       ? "bg-smoke border-primary"
-                      : "bg-white border-white"
+                      : "bg-white border-smoke"
                   }`}
                 >
                   0{index + 1}
@@ -68,7 +68,7 @@ const DemoCard = (props: Props) => {
           ))}
         </div>
       </div>
-      <div>
+      <div className="block">
         <img
           src={props.item.features[selectedDescription].image}
           alt=""
