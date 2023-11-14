@@ -16,7 +16,6 @@ export default function Projects() {
   useEffect(() => {
     const userId = user?.id;
 
-    // Redirect to login if user.username not found
     if (!user?.username) {
       router.push('/login');
       return;

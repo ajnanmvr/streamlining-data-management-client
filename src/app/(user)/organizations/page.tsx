@@ -14,6 +14,12 @@ export default function Organizations() {
   const router = useRouter();
   useEffect(() => {
     const userId = user?.id;
+
+    if (!user?.username) {
+      router.push('/login');
+      return;
+    }
+
     Axios.get(`/users/${userId}`)
       .then((res) => {
         setProfileUser(res.data);
