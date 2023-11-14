@@ -1,8 +1,18 @@
+"use client"
+import { usePathname } from "next/navigation";
 import React from "react";
 
 function Footer() {
+
+  
+  const pathName = usePathname();
+
+  const isEditRoute = /^\/project\/.*\/edit$/.test(pathName || '')
+
   return (
-    <footer className="flex flex-col text-center items-center lg:text-left lg:items-start lg:flex-row justify-between bg-primary text-white p-12">
+    <>
+    {
+      !isEditRoute && (<footer className="flex flex-col text-center items-center lg:text-left lg:items-start lg:flex-row justify-between bg-primary text-white p-12">
       <div className="flex flex-col justify-between">
         <div className="mb-10 lg:mb-0 lg:h-32">
           <img
@@ -97,7 +107,9 @@ function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </footer>)
+    }
+    </>
   );
 }
 

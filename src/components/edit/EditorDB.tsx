@@ -3,7 +3,11 @@ import Axios from "@/utils/Axios";
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 
-function page({ params }: { params: { id: string } }) {
+interface Props {
+    id : string
+    }
+
+function page(props:Props) {
   const [excelData, setExcelData] = useState<any>([]);
   const [sheetCount, setSheetCount] = useState<number>(0);
   const [selectedRow, setSelectedRow] = useState<any>(0);
@@ -58,11 +62,11 @@ function page({ params }: { params: { id: string } }) {
   }, []);
 
   useEffect(() => {
-    const userId = params.id;
+    const userId = props.id;
     Axios.get(`/projects/${userId}`)
       .then((res) => {
         console.log(res.data);
-        setExcelData(res.data);
+        
       })
       .catch((err) => {
         console.log(err);

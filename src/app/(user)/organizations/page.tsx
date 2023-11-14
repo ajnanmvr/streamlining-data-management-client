@@ -42,25 +42,24 @@ export default function Organizations() {
 
   return (
     <>
-      {isPopupShow && (
+      {/* {isPopupShow && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
           {isPopupShow &&
-          <CreateProject isPopupShow setIsPopupShow={setIsPopupShow}/>
           
           }
         </div>
-      )}
+      )} */}
       {profileUser ? (
         <div className="px-16 flex justify-center flex-wrap lg:flex-nowrap gap-10">
           <div>
-            <h1 className="text-2xl font-bold mb-5 ml-2">Project List</h1>
+            <h1 className="text-2xl font-bold mb-5 ml-2">Your Organizations</h1>
             <div className="flex flex-wrap justify-stretch  gap-5">
               {profileUser.organizations?.map((project: any) => {
                 const projectData = JSON.stringify(project.data);
 
                 return (
                   <div onClick={()=>{
-                    router.push(`/project/${project.id}`)
+                    router.push(`/organizations`)
                   }}>
                   <Card
                     key={project.id}
@@ -85,7 +84,7 @@ export default function Organizations() {
                       <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
                     </svg>
                     <p className="text-xl tect-center font-semibold leading-[20px]">
-                      New Project
+                      New Organization
                     </p>
                   </div>
                 </div>
