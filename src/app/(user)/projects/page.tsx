@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 export default function Projects() {
   const [profileUser, setProfileUser] = useState<any>();
   const [isPopupShow, setIsPopupShow] = useState<any>();
+  const [projects, setProjects] = useState<any>();
   const { setUser, user } = useUserContext();
 
   const router = useRouter();
@@ -25,6 +26,7 @@ export default function Projects() {
       .then((res) => {
         setProfileUser(res.data);
         console.log(res.data);
+        setProjects(res.data?.projects);
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +52,7 @@ export default function Projects() {
       {isPopupShow && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
           {isPopupShow &&
-          <CreateProject isPopupShow setIsPopupShow={setIsPopupShow}/>
+          <CreateProject isPopupShow setIsPopupShow={setIsPopupShow} projects={projects} setProjects={setProjects} />
         
           }
         </div>
@@ -60,7 +62,7 @@ export default function Projects() {
           <div>
             <h1 className="text-2xl font-bold mb-5 ml-2">Project List</h1>
             <div className="flex flex-wrap justify-stretch  gap-5">
-              {profileUser.projects?.map((project: any) => {
+              {projects?.map((project: any) => {
                 const projectData = JSON.stringify(project.data);
 
                 return (

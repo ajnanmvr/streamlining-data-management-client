@@ -1,13 +1,15 @@
 "use client"
 import Axios from '@/utils/Axios'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as XLSX from "xlsx";
 
 
 interface Props {
   isPopupShow: boolean
   setIsPopupShow: any
+  projects: any
+  setProjects: any
 }
 
 function CreateProject(
@@ -71,6 +73,11 @@ function CreateProject(
     });
   };
 
+
+  useEffect(()=>{
+    
+  })
+
   const uploadFile = (e: any) => {
 
     setFile(e.target?.files ? e.target?.files[0] : null)
@@ -91,6 +98,12 @@ function CreateProject(
       data: excelData
     }).then((res) => {
       console.log(res.data)
+      props.setProjects(
+        [
+          ...props.projects,
+          res.data
+        ]
+      )
     }).catch((err) => {
       console.log(err)
     })

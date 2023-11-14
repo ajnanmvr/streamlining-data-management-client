@@ -20,14 +20,6 @@ import View from "@/components/project/View";
 
   return (
     <main className="font-sans h-screen overflow-hidden flex bg-accent">
-        {
-            params.id
-
-            
-        }
-        {/* {
-          project.name
-        } */}
         <View id={params.id}/>
     </main>
   );
