@@ -46,6 +46,14 @@ function Footer() {
                   Organizations
                 </a>
               </li>
+              <li>
+                <a
+                  className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  href="/docs"
+                >
+                  Docs
+                </a>
+              </li>
               {/* <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
@@ -72,27 +80,19 @@ function Footer() {
               <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                  href="#"
+                  href="/register"
                 >
-                  Docs
-                </a>
-              </li>
-              {/* <li>
-                <a
-                  className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                  href="#"
-                >
-                  Privacy Policy
+                  Sign Up
                 </a>
               </li>
               <li>
                 <a
                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                  href="/contact-us"
+                  href="/profile"
                 >
-                  Contact Us
+                  Profile
                 </a>
-              </li> */}
+              </li>
             </ul>
           </div>
         </div>

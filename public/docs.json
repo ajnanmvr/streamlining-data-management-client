@@ -1,140 +1,140 @@
 [
-    {
-        "name": "Introduction",
-        "desc": "Welcome to our Excel File Management Platform, designed to empower users in managing Excel projects efficiently. This documentation aims to provide a detailed understanding of the platform's features, ensuring that you can make the most of its capabilities, from collaborative editing to data visualization.",
+  {
+    "name": "Introduction",
+    "desc": "Welcome to our Excel File Management Platform, designed to empower users in managing Excel projects efficiently. This documentation aims to provide a detailed understanding of the platform's features, ensuring that you can make the most of its capabilities, from collaborative editing to data visualization.",
+    "subs": [
+      {
+        "name": "Overview",
         "subs": [
-            {
-                "name": "Overview",
-                "subs": [
-                    {
-                        "name": "Excel File Upload",
-                        "desc": "Our platform allows you to seamlessly upload Excel files in a predefined format. This feature ensures that your data is structured and ready for analysis."
-                    },
-                    {
-                        "name": "Data Display",
-                        "desc": "Visualize your data in a structured manner for easy interpretation. The platform organizes information in a user-friendly way, making it accessible and digestible."
-                    },
-                    {
-                        "name": "Form Population",
-                        "desc": "Click on specific lines in your data to populate a form instantly. This feature enhances the user experience, eliminating the need for manual data entry."
-                    },
-                    {
-                        "name": "Data Editing and Saving",
-                        "desc": "Edit and save your data directly within the platform. This feature simplifies the process of making changes and ensures that your data is always up to date."
-                    },
-                    {
-                        "name": "Data Download",
-                        "desc": "Download your updated data in various Excel formats, providing flexibility in how you utilize and share your information."
-                    }
-                ]
-            }
+          {
+            "name": "Excel File Upload",
+            "desc": "Our platform allows you to seamlessly upload Excel files in a predefined format. This feature ensures that your data is structured and ready for analysis."
+          },
+          {
+            "name": "Data Display",
+            "desc": "Visualize your data in a structured manner for easy interpretation. The platform organizes information in a user-friendly way, making it accessible and digestible."
+          },
+          {
+            "name": "Form Population",
+            "desc": "Click on specific lines in your data to populate a form instantly. This feature enhances the user experience, eliminating the need for manual data entry."
+          },
+          {
+            "name": "Data Editing and Saving",
+            "desc": "Edit and save your data directly within the platform. This feature simplifies the process of making changes and ensures that your data is always up to date."
+          },
+          {
+            "name": "Data Download",
+            "desc": "Download your updated data in various Excel formats, providing flexibility in how you utilize and share your information."
+          }
         ]
-    },
-    {
-        "name": "User Management",
-        "desc": "Welcome to our Excel File Management Platform, designed to empower users in managing Excel projects efficiently. This documentation aims to provide a detailed understanding of the platform's features, ensuring that you can make the most of its capabilities, from collaborative editing to data visualization.",
+      }
+    ]
+  },
+  {
+    "name": "User Management",
+    "desc": "Welcome to our Excel File Management Platform, designed to empower users in managing Excel projects efficiently. This documentation aims to provide a detailed understanding of the platform's features, ensuring that you can make the most of its capabilities, from collaborative editing to data visualization.",
+    "subs": [
+      {
+        "name": "Account Creation",
         "subs": [
-            {
-                "name": "Account Creation",
-                "subs": [
-                    {
-                        "name": "Personalized Accounts",
-                        "desc": "Users can create individual accounts to personalize their experience and gain access to advanced project management features."
-                    }
-                ]
-            },
-            {
-                "name": "Project Creation",
-                "subs": [
-                    {
-                        "name": "Efficient Project Management",
-                        "desc": "Create, organize, and manage your projects effortlessly, ensuring a structured workflow."
-                    }
-                ]
-            },
-            {
-                "name": "Privacy and Security",
-                "subs": [
-                    {
-                        "name": "SANDBOX Mode",
-                        "desc": "Operate in a client-side mode with our SANDBOX feature, ensuring that all processes happen locally on your device. Your data remains private and secure."
-                    },
-                    {
-                        "name": "Security Measures",
-                        "desc": "Our platform prioritizes the security of your data, implementing robust measures to safeguard your information."
-                    }
-                ]
-            },
-            {
-                "name": "Offline Mode",
-                "subs": [
-                    {
-                        "name": "Seamless Editing Offline",
-                        "desc": "Edit your Excel files offline, and once connected, synchronize your changes with the server effortlessly."
-                    }
-                ]
-            }
+          {
+            "name": "Personalized Accounts",
+            "desc": "Users can create individual accounts to personalize their experience and gain access to advanced project management features."
+          }
         ]
-    },
-    {
-        "name": "Collaborative Features",
-        "desc": "Welcome to our Excel File Management Platform, designed to empower users in managing Excel projects efficiently. This documentation aims to provide a detailed understanding of the platform's features, ensuring that you can make the most of its capabilities, from collaborative editing to data visualization.",
+      },
+      {
+        "name": "Project Creation",
         "subs": [
-            {
-                "name": "Organizations",
-                "subs": [
-                    {
-                        "name": "Enhanced Collaboration",
-                        "desc": "Create organizations to foster collaborative work environments, ensuring that teams can efficiently contribute to shared projects."
-                    }
-                ]
-            },
-            {
-                "name": "Project Collaboration",
-                "subs": [
-                    {
-                        "name": "Real-time Visibility",
-                        "desc": "Experience real-time visibility of other online users working on the same project, enhancing collaboration and reducing conflicts."
-                    }
-                ]
-            }
+          {
+            "name": "Efficient Project Management",
+            "desc": "Create, organize, and manage your projects effortlessly, ensuring a structured workflow."
+          }
         ]
-    },
-    {
-        "name": "Project Modes",
-        "desc": "Customize the accessibility of your projects with different modes to suit your needs. Choose between public and private project modes based on your sharing and collaboration preferences.",
+      },
+      {
+        "name": "Privacy and Security",
         "subs": [
-            {
-                "name": "Public Projects",
-                "desc": "Make your projects accessible to the public, allowing for broader visibility and information sharing."
-            },
-            {
-                "name": "Private Projects",
-                "desc": "Restrict access to specific users for heightened privacy and control over your project's content."
-            }
+          {
+            "name": "SANDBOX Mode",
+            "desc": "Operate in a client-side mode with our SANDBOX feature, ensuring that all processes happen locally on your device. Your data remains private and secure."
+          },
+          {
+            "name": "Security Measures",
+            "desc": "Our platform prioritizes the security of your data, implementing robust measures to safeguard your information."
+          }
         ]
-    },
-    {
-        "name": "Sharing Options",
-        "desc": "Tailor the sharing settings for your projects to control who can view and edit your content. Whether you're collaborating within a team or sharing information externally, our platform provides flexible sharing options.",
+      },
+      {
+        "name": "Offline Mode",
         "subs": [
-            {
-                "name": "Creator's Options",
-                "subs": [
-                    {
-                        "name": "Viewing Only",
-                        "desc": "Share your projects for viewing only, perfect for situations where you want to disseminate information without allowing modifications."
-                    },
-                    {
-                        "name": "Editing and Modifying",
-                        "desc": "Enable collaborative editing by sharing projects for editing and modifying. Facilitate teamwork and collective project management."
-                    }
-                ]
-            },
-            {
-                "name": "Collaborative Editing",
-                "desc": "Experience real-time collaborative editing, allowing multiple users to work on a project simultaneously. Enhance teamwork and productivity."
-            }
+          {
+            "name": "Seamless Editing Offline",
+            "desc": "Edit your Excel files offline, and once connected, synchronize your changes with the server effortlessly."
+          }
         ]
-    }
+      }
+    ]
+  },
+  {
+    "name": "Collaborative Features",
+    "desc": "Welcome to our Excel File Management Platform, designed to empower users in managing Excel projects efficiently. This documentation aims to provide a detailed understanding of the platform's features, ensuring that you can make the most of its capabilities, from collaborative editing to data visualization.",
+    "subs": [
+      {
+        "name": "Organizations",
+        "subs": [
+          {
+            "name": "Enhanced Collaboration",
+            "desc": "Create organizations to foster collaborative work environments, ensuring that teams can efficiently contribute to shared projects."
+          }
+        ]
+      },
+      {
+        "name": "Project Collaboration",
+        "subs": [
+          {
+            "name": "Real-time Visibility",
+            "desc": "Experience real-time visibility of other online users working on the same project, enhancing collaboration and reducing conflicts."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Project Modes",
+    "desc": "Customize the accessibility of your projects with different modes to suit your needs. Choose between public and private project modes based on your sharing and collaboration preferences.",
+    "subs": [
+      {
+        "name": "Public Projects",
+        "desc": "Make your projects accessible to the public, allowing for broader visibility and information sharing."
+      },
+      {
+        "name": "Private Projects",
+        "desc": "Restrict access to specific users for heightened privacy and control over your project's content."
+      }
+    ]
+  },
+  {
+    "name": "Sharing Options",
+    "desc": "Tailor the sharing settings for your projects to control who can view and edit your content. Whether you're collaborating within a team or sharing information externally, our platform provides flexible sharing options.",
+    "subs": [
+      {
+        "name": "Creator's Options",
+        "subs": [
+          {
+            "name": "Viewing Only",
+            "desc": "Share your projects for viewing only, perfect for situations where you want to disseminate information without allowing modifications."
+          },
+          {
+            "name": "Editing and Modifying",
+            "desc": "Enable collaborative editing by sharing projects for editing and modifying. Facilitate teamwork and collective project management."
+          }
+        ]
+      },
+      {
+        "name": "Collaborative Editing",
+        "desc": "Experience real-time collaborative editing, allowing multiple users to work on a project simultaneously. Enhance teamwork and productivity."
+      }
+    ]
+  }
 ]
