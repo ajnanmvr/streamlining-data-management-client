@@ -69,7 +69,9 @@ export default function Profile() {
               <button className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary">
                 Edit Details
               </button>{" "}
-              <button className="border-red-700 border rounded-lg text-white px-3 py-1 hover:bg-red-700 fill-red-700 hover:fill-white">
+              <button onClick={
+                logout
+              } className="border-red-700 border rounded-lg text-white px-3 py-1 hover:bg-red-700 fill-red-700 hover:fill-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="1em"

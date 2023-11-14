@@ -18,7 +18,7 @@ function Header() {
       </Link>
       <div>
         <ul className="flex gap-1 items-center">
-          {!user ? (
+          {!user?.username ? (
             <>
               <li className="hover:text-primary hidden lg:block px-3 py-1 hover:border rounded-lg">
                 <Link href={"/register"}>Register</Link>
