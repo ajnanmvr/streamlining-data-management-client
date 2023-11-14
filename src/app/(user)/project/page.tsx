@@ -206,20 +206,20 @@ export default function Page() {
               <h2 className="p-3 bg-primary rounded-xl w-48 text-white font-semibold text-center">
                 Sample Preview
               </h2>
-              <table className="border border-primary table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
+              <div className="mt-20  min-w-[80%] max-w-[90%] max-h-[70vh]">              <table className="table w-full rounded-xl overflow-hidden">
                 <tbody>
                   {sheet.rows.slice(0, 1).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke">
                       {Object.keys(row)
                         .slice(0, 5)
                         ?.map((key, colIndex) => (
-                          <td scope="col" className="border p-2 border-smoke">
+                          <td scope="col" className="border p-2 bg-primary text-white font-semibold  border-primary">
                             {key as unknown as ReactNode}
                           </td>
                         ))}
                     </tr>
                   ))}
-                  {sheet.rows.slice(0, 3).map((row: any, rowIndex: any) => (
+                  {sheet.rows.slice(0, 5).map((row: any, rowIndex: any) => (
                     <tr className="border border-smoke">
                       {Object.values(row)
                         .slice(0, 5)
@@ -243,7 +243,8 @@ export default function Page() {
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
+
             </div>
           ))}
         </>

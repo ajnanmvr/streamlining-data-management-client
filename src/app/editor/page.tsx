@@ -140,7 +140,9 @@ function page() {
                         type="text"
                         className="h-8 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
                         value={value as string}
-                        // onChange={}
+                        onChange={() => {
+                          row[Object.keys(row)[colIndex]]
+                        }}
                       />
                     </td>
                   ))}
