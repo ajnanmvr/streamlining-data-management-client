@@ -101,7 +101,8 @@ export default function Projects() {
           </div>
         </div>
       ) : (
-        "Loading..."
+        <img src="/loading.gif" alt="" className="mx-auto p-20 h-52" />
+
       )}
     </>
   );

@@ -9,7 +9,7 @@ import { useContext, useEffect, useState } from "react";
 export default function Profile() {
   const [profileUser, setProfileUser] = useState<any>();
   const [isPopupShow, setIsPopupShow] = useState<any>();
-  const [isEditMode , setIsEditMode] = useState<boolean>(false)
+  const [isEditMode, setIsEditMode] = useState<boolean>(false)
   const { setUser, user } = useUserContext();
 
 
@@ -26,10 +26,10 @@ export default function Profile() {
       .then((res) => {
         setProfileUser(res.data);
         console.log(res.data);
-        
-    setEmail(res.data?.email)
-    setFirstName(res.data?.FirstName)
-    setLastName(res.data?.LastName)
+
+        setEmail(res.data?.email)
+        setFirstName(res.data?.FirstName)
+        setLastName(res.data?.LastName)
       })
       .catch((err) => {
         console.log(err);
@@ -57,8 +57,8 @@ export default function Profile() {
       {isPopupShow && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
           {isPopupShow &&
-          <CreateProject isPopupShow setIsPopupShow={setIsPopupShow}/>
-          
+            <CreateProject isPopupShow setIsPopupShow={setIsPopupShow} />
+
           }
         </div>
       )}
@@ -70,38 +70,38 @@ export default function Profile() {
             </div>
             <p className="text-center -mb-1">Welcome</p>
             <p className="font-bold text-2xl text-center my-1 text-primary leading-[23px]">
-             {
-              !isEditMode ? 
-                profileUser.FirstName + " " + profileUser.LastName
-               : (
-                <>
-                <input type="text" value={FirstName}  onChange={()=>{
-                  setFirstName(FirstName)
-                }}  />
-                <input type="text" value={LastName} onChange={()=>{
-                  setLastName(LastName)
-                }} />
-                </>
-              )
-             }
+              {
+                !isEditMode ?
+                  profileUser.FirstName + " " + profileUser.LastName
+                  : (
+                    <>
+                      <input type="text" value={FirstName} onChange={() => {
+                        setFirstName(FirstName)
+                      }} />
+                      <input type="text" value={LastName} onChange={() => {
+                        setLastName(LastName)
+                      }} />
+                    </>
+                  )
+              }
 
             </p>{
               isEditMode ? (
                 <>
-                <input type="text" value={email} onChange={()=>{
-                  setEmail(email)
-                }} />
+                  <input type="text" value={email} onChange={() => {
+                    setEmail(email)
+                  }} />
                 </>
               ) :
-              <>
-               <p className="text-center">{profileUser.email}</p>
-               </>
+                <>
+                  <p className="text-center">{profileUser.email}</p>
+                </>
             }
             <button className="text-sm text-primary mt-3 mb-1">
               Change Password
             </button>
             <div className="flex gap-2 mt-1">
-              <button onClick={()=>{
+              <button onClick={() => {
                 setIsEditMode(!isEditMode)
               }} className="border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary">
                 {
@@ -129,14 +129,14 @@ export default function Profile() {
                 const projectData = JSON.stringify(project.data);
 
                 return (
-                  <div onClick={()=>{
+                  <div onClick={() => {
                     router.push(`/project/${project.id}`)
                   }}>
-                  <Card
-                    key={project.id}
-                    name={project.name}
-                    sheets={JSON.parse(projectData).length}
-                  />
+                    <Card
+                      key={project.id}
+                      name={project.name}
+                      sheets={JSON.parse(projectData).length}
+                    />
                   </div>
                 );
               })}
@@ -164,7 +164,9 @@ export default function Profile() {
           </div>
         </div>
       ) : (
-        "Loading..."
+
+        <img src="/loading.gif" alt="" className="mx-auto p-20 h-52" />
+
       )}
     </>
   );
