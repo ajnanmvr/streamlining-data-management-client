@@ -16,7 +16,7 @@ async function readExcel(filePath: any) {
     const sheetData = {
       sheetName: worksheet.name,
       rows: [],
-      headers: [],
+      // headers: [],
     };
 
     worksheet.eachRow((row, rowNumber) => {
@@ -32,11 +32,12 @@ async function readExcel(filePath: any) {
           format: cell.style,
           hyperlink: cell.hyperlink,
         };
-        if (rowNumber === 1) {
-          sheetData.headers.push(cellData as never);
-        } else {
-          rowData.cells.push(cellData as never);
-        }
+        // if (rowNumber === 1) {
+        //   sheetData.headers.push(cellData as never);
+        // } else {
+        //   rowData.cells.push(cellData as never);
+        // }
+        rowData.cells.push(cellData as never);
       });
 
       sheetData.rows.push(rowData as never);
