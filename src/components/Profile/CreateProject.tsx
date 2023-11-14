@@ -1,7 +1,9 @@
 "use client"
 import Axios from '@/utils/Axios'
 import Link from 'next/link'
-import React from 'react'
+import React , {useState} from 'react'
+import * as XLSX from "xlsx";
+
 
 interface Props {
   isPopupShow : boolean
@@ -15,19 +17,76 @@ function CreateProject(
   const [name, setName] = React.useState('')
   const [description, setDescription] = React.useState('')
   const [isPublic, setIsPublic] = React.useState(true)
-  const [file, setFile] = React.useState('')
+  const [file, setFile] = React.useState<File | null>()
+  const [excelData, setExcelData] = useState<any>([]);
 
 
+  const readExcel = (file: any) => {
+    const promise = new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file);
+
+      fileReader.onload = async (e: any) => {
+        const bufferArray = e.target.result;
+
+        const wb = XLSX.read(bufferArray, { type: "buffer" });
+        console.log(wb.SheetNames);
+        let XLS_DATA:any = []
+        wb.SheetNames.map((sheetName: any) => {
+          const ws = wb.Sheets[sheetName];
+          XLS_DATA.push(
+            {sheetName: sheetName,
+            rows: XLSX.utils.sheet_to_json(ws)}
+          )
+
+          // const data = XLSX.utils.sheet_to_json(ws);
+          // console.log(data);
+          
+  
+          // validating sheet
+          console.log("validating data");
+          resolve(XLS_DATA);
+        });
+        // const wsname = wb.SheetNames[0];
+
+        // const ws = wb.Sheets[wsname];
+
+        // const data = XLSX.utils.sheet_to_json(ws);
+
+        // // validating sheet
+        // console.log("validating data");
+        // resolve(data);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+
+    promise.then((d: any) => {
+      setExcelData(d);
+      console.log(d);
+    });
+  };
+
+  const uploadFile = (e:any) => {
+
+      setFile(e.target?.files ? e.target?.files[0] : null)
+      readExcel(e.target?.files ? e.target?.files[0] : null)
+
+  }
 
   const submitForm = (e : any)=>{
+
+
     e.preventDefault()
     // submit form
     // send data to backend
-    Axios.post('/project',{
+    Axios.post('/projects',{
       name,
       description,
       isPublic,
-      data : file
+      data : excelData
     }).then((res)=>{
       console.log(res.data)
     }).catch((err)=>{
@@ -62,8 +121,8 @@ function CreateProject(
         description
         <input type="text" className='' 
         value={description}
-        onChange={()=>{
-          setDescription(description)
+        onChange={(e)=>{
+          setDescription(e.target.value)
         }}
         />
         {/* radio buttor */}
@@ -88,11 +147,9 @@ function CreateProject(
 
           <div className='flex justify-between'>
             <div className='flex gap-2'>
-              <input type="file" name='file' className='' value={file}
+              <input type="file" name='file' className='' 
               onChange={
-                (e)=>{
-                  setFile(e.target.value)
-                }
+               uploadFile
               }
               />
               
