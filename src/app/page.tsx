@@ -12,6 +12,9 @@ export default function Home() {
         <HeroSection />
       </div>
       <DemoSection />
+      <DemoSection />
+      <DemoSection />
+      <DemoSection />
       <Footer />
     </main>
   )

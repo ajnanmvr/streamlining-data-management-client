@@ -90,24 +90,27 @@ export default function Page() {
             value={`Upload`}
           />
         </div>
-        <a
-          href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
-          className="mt-3 text-sm text-[gray] px-3 border-white rounded-xl py-1 hover:border-primary ml-2"
-        >
-          Download Demo File
-        </a>
+
       </form>
       {loading ? (
-        'Loading...' // Display loading state
+       <div className="flex flex-col justify-center items-center p-20 h-[455px]">
+       <img src="/excel-logo.png" alt="" className="h-12" />
+       <p className="text-xl font-bold">Loading Preview ...
+       </p>        <a
+         href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+         className="text-sm text-[gray] flex gap-1 items-center"
+       >
+
+       </a>        </div>
       ) : excelData.length > 0 ? (
         <>
           {excelData.slice(0, 5).map((sheet: any, sheetIndex: any) => (
-            <div className=" flex flex-col items-center mb-10" key={sheetIndex}>
+            <div className=" flex flex-col items-center my-10 h-[400px]" key={sheetIndex}>
               <hr className="border-2 border-dashed w-full border-primary mt-10 -mb-7" />
               <h2 className="p-3 bg-primary rounded-xl w-48 text-white font-semibold text-center">
-                Preview
+                Sample Preview
               </h2>
-              <table className="table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
+              <table className="border border-primary table mt-10 rounded-xl overflow-hidden min-w-[80%] max-w-[90%] max-h-[70vh]">
                 <thead>
                   <tr className="border-2 border-smoke">
                     {sheet.headers.slice(0, 5).map((header: any, rowIndex: any) => (
@@ -137,14 +140,14 @@ export default function Page() {
                     </tr>
 
                   ))}
-                  <tr className="border-smoke border bg-smoke hover:bg-smoker">
+                  <tr className=" border bg-smoke hover:bg-smoker">
                     <td colSpan={5}>
                       <Link href="/project/edit"
-                      onClick={() => setToLocalStorage(excelData)}>
-                      <h2 className="p-2 w-full text-primary font-semibold text-center">
-                    Go to Editor
-                      </h2>
-                    </Link></td>
+                        onClick={() => setToLocalStorage(excelData)}>
+                        <h2 className="p-2 w-full text-primary font-semibold text-center">
+                          Go to Editor
+                        </h2>
+                      </Link></td>
                   </tr>
                 </tbody>
               </table>
@@ -153,7 +156,15 @@ export default function Page() {
 
         </>
       )
-        : 'dd'
+        : <div className="flex flex-col justify-center items-center p-20 h-[455px]">
+          <img src="/excel-logo.png" alt="" className="h-12" />
+          <p className="text-xl font-bold">        Upload a File for Preview
+          </p>        <a
+            href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+            className="text-sm text-[gray] flex gap-1 items-center"
+          >
+           <svg xmlns="http://www.w3.org/2000/svg" height="1em" className="fill-[gray]" viewBox="0 0 512 512"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg> Download Demo File
+          </a>        </div>
       }
     </div>
   );
