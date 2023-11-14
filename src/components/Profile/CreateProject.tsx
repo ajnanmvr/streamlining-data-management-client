@@ -1,7 +1,7 @@
 "use client"
 import Axios from '@/utils/Axios'
 import Link from 'next/link'
-import React , {useState} from 'react'
+import React, { useState } from 'react'
 import * as XLSX from "xlsx";
 
 
@@ -71,14 +71,14 @@ function CreateProject(
     });
   };
 
-  const uploadFile = (e:any) => {
+  const uploadFile = (e: any) => {
 
-      setFile(e.target?.files ? e.target?.files[0] : null)
-      readExcel(e.target?.files ? e.target?.files[0] : null)
+    setFile(e.target?.files ? e.target?.files[0] : null)
+    readExcel(e.target?.files ? e.target?.files[0] : null)
 
   }
 
-  const submitForm = (e : any)=>{
+  const submitForm = (e: any) => {
 
 
     e.preventDefault()
@@ -157,17 +157,17 @@ function CreateProject(
       </div>
 
 
-      <input type="file" name='file' className='file:border-primary border border-primary rounded-xl uppercase file:border file:mr-3 file:rounded-lg file:text-white file:px-3 file:py-1 file:hover:bg-light file:bg-primary file:font-semibold text-sm w-50 my-3' value={file}
+      <input type="file" name='file' className='file:border-primary border border-primary rounded-xl uppercase file:border file:mr-3 file:rounded-lg file:text-white file:px-3 file:py-1 file:hover:bg-light file:bg-primary file:font-semibold text-sm w-50 my-3'
         onChange={
           uploadFile
-         }
+        }
       />
 
-          <button type='submit' className='border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary'>Create</button>
+      <button type='submit' className='border-primary border rounded-lg text-white px-3 py-1 hover:bg-light bg-primary'>Create</button>
 
-          <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => {
+      <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => {
         props.setIsPopupShow(false)
-      }}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></button> 
+      }}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></button>
     </form>
 
 
