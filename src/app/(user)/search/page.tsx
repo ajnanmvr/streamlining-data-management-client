@@ -1,6 +1,7 @@
 "use client";
 
 import Axios from "@/utils/Axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Organization() {
@@ -8,6 +9,7 @@ export default function Organization() {
     const [users , setUsers] = useState<any>([])
     const [allUsers , setAllUsers] = useState<any>([])
     const [search , setSearch] = useState<any>([])
+    const router = useRouter();
 
     useEffect(() => {
         // const userId = user?.id;
@@ -38,7 +40,10 @@ export default function Organization() {
 
               {
                 users.map((user:any) => (
-                    <div  className=" bg-smoke hover:bg-smoker p-10 rounded-xl flex justify-center flex-col items-center w-64">
+                    <div onClick={()=>{
+                        router.push(`/users/${user.id}`)
+                    }} 
+                    className=" bg-smoke hover:bg-smoker p-10 rounded-xl flex justify-center flex-col items-center w-64">
                     <div>
                         <img className="h-24" src="/avatar.png" alt="avatar" />
                     </div>
