@@ -55,12 +55,12 @@ function page() {
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
             <div className="bg-green-200 w-96 flex flex-col justify-center p-5 mx-12 gap-3">
               <p onClick={() => setUpdateModal(false)}>close</p>
-              {excelData[sheetCount]?.rows[selectedRow]?.cells.map(
+              {excelData[sheetCount]?.rows.map(
                 (cell: any, cellIndex: any) => (
                   <input
                     type="text"
                     key={cellIndex}
-                    value={cell.formula ? cell.value.result : cell.value}
+                    value={excelData[sheetCount]?.rows.indexOf(cell) + 1}
                     onChange={(e) => {
                       console.log(e.target.value);
                       setExcelData((prev: any) => {
@@ -140,7 +140,9 @@ function page() {
                         type="text"
                         className="h-8 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
                         value={value as string}
-                        // onChange={}
+                        onChange={() => {
+                          row[Object.keys(row)[colIndex]]
+                        }}
                       />
                     </td>
                   ))}
