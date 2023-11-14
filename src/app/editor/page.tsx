@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
 
 function page() {
   const [excelData, setExcelData] = useState<any>([]);
@@ -39,6 +40,19 @@ function page() {
     2: "border-2 border-t-0 border-primary text-[15px] font-semibold rounded-b-xl text-white bg-primary px-3 pt-1 pb-2",
   };
 
+  const downloadExcel = (data: any) => {
+    const workbook = XLSX.utils.book_new();
+    data.map((sheet: any) => {
+  
+      const worksheet = XLSX.utils.json_to_sheet(sheet.rows);
+      XLSX.utils.book_append_sheet(workbook, worksheet, sheet.sheetName);
+      //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+      //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+    });
+    XLSX.writeFile(workbook, "DataSheet.xlsx");
+  };
+
+  
   useEffect(() => {
     const data = localStorage.getItem("encodedData");
     const decoded = JSON.parse(atob(data as string));
@@ -56,23 +70,31 @@ function page() {
             <div className="bg-green-200 w-96 flex flex-col justify-center p-5 mx-12 gap-3">
               <p onClick={() => setUpdateModal(false)}>close</p>
               {excelData[sheetCount]?.rows.map(
-                (cell: any, cellIndex: any) => (
-                  <input
-                    type="text"
-                    key={cellIndex}
-                    value={excelData[sheetCount]?.rows.indexOf(cell) + 1}
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                      setExcelData((prev: any) => {
-                        prev[sheetCount].rows[selectedRow].cells[
-                          cellIndex
-                        ].value = e.target.value;
-                        return [...prev];
-                      });
-                      console.log(excelData);
-                    }}
-                  />
-                )
+                (cell: any, cellIndex: any) => {
+                  if(cellIndex == selectedRow){
+                    return(
+                      Object.values(cell).map((value, colIndex) => (
+
+                        <input
+                          type="text"
+                          key={cellIndex}
+                          value={value as string}
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setExcelData((prev: any) => {
+                              prev[sheetCount].rows[cellIndex][Object.keys(cell)[colIndex]] = e.target.value;
+                              return [...prev];
+                            });
+                            console.log(excelData);
+                          }}
+                        />
+                      
+                    ))
+                    )
+                    
+                  
+                  }
+                 }
               )}
               <p onClick={() => setUpdateModal(false)}>Save</p>
             </div>
@@ -140,8 +162,13 @@ function page() {
                         type="text"
                         className="h-8 border-smoke focus:outline-none focus-within:bg-smoke bg-transparent"
                         value={value as string}
-                        onChange={() => {
-                          row[Object.keys(row)[colIndex]]
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                          setExcelData((prev: any) => {
+                            prev[sheetCount].rows[rowIndex][Object.keys(row)[colIndex]] = e.target.value;
+                            return [...prev];
+                          });
+                          console.log(excelData);
                         }}
                       />
                     </td>
@@ -190,6 +217,15 @@ function page() {
               {sheet.sheetName}
             </button>
           ))}
+
+<button
+            className="bg-primary rounded-lg text-white p-2"
+            onClick={() => {
+              downloadExcel(excelData);
+            }}
+          >
+            Download excel file
+          </button>
         </div>
       </>
     )
