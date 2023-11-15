@@ -235,7 +235,7 @@ function page(props:Props) {
           </table>
           <div></div>
         </div>
-        <div className="fixed bottom-0 w-screen flex justify-center">
+        <div className="fixed bottom-0 right-1/2 left-1/2 -translate-x-1/2 flex justify-center">
           <div className="py-5 px-8  bg-white shadow-2xl rounded-t-2xl flex gap-2 font-semibold">
             {" "}
             {excelData.map((sheet: any, sheetIndex: any) => (
