@@ -7,6 +7,7 @@ function page() {
   const [sheetCount, setSheetCount] = useState<number>(0);
   const [selectedRow, setSelectedRow] = useState<any>(0);
   const [updateModal, setUpdateModal] = useState<boolean>(false);
+  const [addModal, setAddModal] = useState<boolean>(false);
   const alphabets = [
     "A",
     "B",
@@ -68,6 +69,29 @@ function page() {
               <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => setUpdateModal(false)}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></button>
               <h1 className="text-center font-semibold text-2xl">Edit <span className="font-extrabold text-primary">The Row</span></h1>
 
+              <p 
+              onClick={()=>{
+                // delete selected row using array.filter
+               const afterDeletedRows = excelData[sheetCount].rows.filter((row:any, index:any)=> index !== selectedRow)
+
+                // set the new data
+
+                setExcelData((prev:any)=>{
+                  prev[sheetCount].rows = afterDeletedRows;
+                  return [...prev]
+                })
+
+                // close the modal
+
+                setUpdateModal(false);
+
+              }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className="fill-red-500 cursor-pointer hover:fill-red-800">
+  {/*! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. */}
+  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+</svg>
+              </p>
               <div className="max-h-[70vh] overflow-auto m-auto">
                 {excelData[sheetCount]?.rows.map(
                   (cell: any, cellIndex: any) => {
@@ -79,6 +103,9 @@ function page() {
                             type="text"
                             key={cellIndex}
                             value={value as string}
+                            placeholder={
+                              Object.keys(cell)[colIndex] as unknown as string
+                            }
                             className="px-3 py-2 rounded-lg border my-1 focus:border-primary w-full"
                             onChange={(e) => {
                               console.log(e.target.value);
@@ -101,6 +128,52 @@ function page() {
             </div>
           </div>
         )}
+
+        {
+          addModal && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
+            <div className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center relative">
+              <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => setAddModal(false)}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></button>
+              <h1 className="text-center font-semibold text-2xl">Add <span className="font-extrabold text-primary">New Row</span></h1>
+              <div className="max-h-[70vh] overflow-auto m-auto">
+                {excelData[sheetCount]?.rows.map(
+                  (cell: any, cellIndex: any) => {
+                    if (cellIndex == selectedRow) {
+                      return (
+                        Object.values(cell).map((value, colIndex) => (
+
+                          <input
+                            type="text"
+                            key={cellIndex}
+                            // value={value as string}
+                            placeholder={
+                              Object.keys(cell)[colIndex] as unknown as string
+                            }
+                            className="px-3 py-2 rounded-lg border my-1 focus:border-primary w-full"
+                            onChange={(e) => {
+                              console.log(e.target.value);
+                              setExcelData((prev: any) => {
+                                prev[sheetCount].rows[cellIndex][Object.keys(cell)[colIndex]] = e.target.value;
+                                return [...prev];
+                              });
+                              console.log(excelData);
+                            }}
+                          />
+
+                        ))
+                      )
+
+
+                    }
+                  }
+                )}
+
+              
+              </div>
+            </div>
+          </div>
+          )
+        }
         <div className="flex text-sm">
           <table className="sticky left-0 bg-white cursor-pointer">
             <thead>
@@ -222,7 +295,47 @@ function page() {
               }}
             >
               Download
-            </button></div>
+            </button>
+            
+            <button
+              className="p-2 px-4 bg-primary text-white hover:bg-dark rounded-xl"
+              onClick={() => {
+                // add new row
+                // open the modal to add new row
+
+                setAddModal(true);
+
+                // add new row using array.push and set all the keys wich their values to empty string
+
+                excelData[sheetCount].rows.push({});
+                Object.keys(excelData[sheetCount].rows[0]).map((key) => {
+                  excelData[sheetCount].rows[excelData[sheetCount].rows.length - 1][key] = "";
+                });
+
+                // set the new data
+
+                setExcelData((prev: any) => {
+                  return [...prev];
+                });
+
+                
+
+                // make added row selected
+
+                setSelectedRow(excelData[sheetCount].rows.length - 1);
+
+                
+
+
+              }}
+            >
+             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className="fill-white">
+  {/*! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. */}
+  <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+</svg>
+
+            </button>
+            </div>
         </div>
       </>
     )
