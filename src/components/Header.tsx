@@ -72,9 +72,9 @@ const isEditRoute = /^\/project\/.*\/edit$/.test(pathName || '')
             </li>
             <li>
               <Link
-                href={"/sandbox"}
+                href={"/project"}
                 className={`flex cursor-pointer items-center hover:fill-primary hover:text-primary mx-2 ${
-                  pathName === "/sandbox" ? "fill-primary text-primary" : ""
+                  pathName === "/project" ? "fill-primary text-primary" : ""
                 }`}
               >
                 <p className="flex gap-1 items-center">
