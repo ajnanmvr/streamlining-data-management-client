@@ -149,7 +149,8 @@ export default function Page() {
           <img src="/excel-logo.png" alt="" className="h-12" />
           <p className="text-xl font-bold">Loading Preview ...</p>
           <a
-            href="https://docs.google.com/spreadsheets/d/18MOTHq0447en3TeaS5BIa2yJtXQT4gQZ/edit?usp=sharing&ouid=109197967265480955608&rtpof=true&sd=true"
+            href="/DEMO.xlsx"
+            download
             className="text-sm text-[gray] flex gap-1 items-center"
           ></a>
         </div>
@@ -253,7 +254,8 @@ export default function Page() {
           <img src="/excel-logo.png" alt="" className="h-12" />
           <p className="text-xl font-bold"> Upload a File for Preview</p>
           <a
-            href="https://docs.google.com/spreadsheets/d/18MOTHq0447en3TeaS5BIa2yJtXQT4gQZ/edit?usp=sharing&ouid=109197967265480955608&rtpof=true&sd=true"
+            href="/DEMO.xlsx"
+            download
             className="text-sm text-[gray] flex gap-1 items-center"
           >
             <svg

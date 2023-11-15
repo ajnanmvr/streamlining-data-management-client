@@ -149,7 +149,8 @@ export default function Page() {
           <img src="/excel-logo.png" alt="" className="h-12" />
           <p className="text-xl font-bold">Loading Preview ...</p>
           <a
-            href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+            href="/DEMO.xlsx"
+            download
             className="text-sm text-[gray] flex gap-1 items-center"
           ></a>
         </div>
@@ -197,13 +198,64 @@ export default function Page() {
               </table>
             </div>
           ))} */}
+          {excelData.map((sheet: any, sheetIndex: any) => (
+            <div
+              className=" flex flex-col items-center my-10 h-[400px]"
+              key={sheetIndex}
+            >
+              <hr className="border-2 border-dashed w-full border-primary mt-10 -mb-7" />
+              <h2 className="p-3 bg-primary rounded-xl w-48 text-white font-semibold text-center">
+                Sample Preview
+              </h2>
+              <div className="mt-20  min-w-[80%] max-w-[90%] max-h-[70vh]">              <table className="table w-full rounded-xl overflow-hidden">
+                <tbody>
+                  {sheet.rows.slice(0, 1).map((row: any, rowIndex: any) => (
+                    <tr className="border border-smoke">
+                      {Object.keys(row)
+                        .slice(0, 5)
+                        ?.map((key, colIndex) => (
+                          <td scope="col" className="border p-2 bg-primary text-white font-semibold  border-primary">
+                            {key as unknown as ReactNode}
+                          </td>
+                        ))}
+                    </tr>
+                  ))}
+                  {sheet.rows.slice(0, 5).map((row: any, rowIndex: any) => (
+                    <tr className="border border-smoke">
+                      {Object.values(row)
+                        .slice(0, 5)
+                        ?.map((value, colIndex) => (
+                          <td scope="col" className="border p-2 border-smoke">
+                            {value as unknown as ReactNode}
+                          </td>
+                        ))}
+                    </tr>
+                  ))}
+                  <tr className=" border bg-smoke hover:bg-smoker">
+                    <td colSpan={5}>
+                      <Link
+                        href="/editor"
+                        onClick={() => setToLocalStorage(excelData)}
+                      >
+                        <h2 className="p-2 w-full text-primary font-semibold text-center">
+                          Go to Editor
+                        </h2>
+                      </Link>
+                    </td>
+                  </tr>
+                </tbody>
+              </table></div>
+
+            </div>
+          ))}
         </>
       ) : (
         <div className="flex flex-col justify-center items-center p-20 h-[455px]">
           <img src="/excel-logo.png" alt="" className="h-12" />
           <p className="text-xl font-bold"> Upload a File for Preview</p>
           <a
-            href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+            href="/DEMO.xlsx"
+            download
             className="text-sm text-[gray] flex gap-1 items-center"
           >
             <svg
