@@ -149,7 +149,7 @@ export default function Page() {
           <img src="/excel-logo.png" alt="" className="h-12" />
           <p className="text-xl font-bold">Loading Preview ...</p>
           <a
-            href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+            href="https://docs.google.com/spreadsheets/d/18MOTHq0447en3TeaS5BIa2yJtXQT4gQZ/edit?usp=sharing&ouid=109197967265480955608&rtpof=true&sd=true"
             className="text-sm text-[gray] flex gap-1 items-center"
           ></a>
         </div>
@@ -233,7 +233,7 @@ export default function Page() {
                   <tr className=" border bg-smoke hover:bg-smoker">
                     <td colSpan={5}>
                       <Link
-                        href="/project/edit"
+                        href="/editor"
                         onClick={() => setToLocalStorage(excelData)}
                       >
                         <h2 className="p-2 w-full text-primary font-semibold text-center">
