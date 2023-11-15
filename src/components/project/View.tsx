@@ -133,7 +133,7 @@ const View = (props: Props) => {
                     onClick={() => {
                       copyProjectLink();
                       setCopyAlert(true)
-                      // timeo
+                      const myTimeout = setTimeout(()=>setCopyAlert(false), 3000);
                     }}
                   >
                     {copyAlert? <>URL copied</>:<><svg
