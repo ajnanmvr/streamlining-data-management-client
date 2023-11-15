@@ -253,7 +253,7 @@ export default function Page() {
           <img src="/excel-logo.png" alt="" className="h-12" />
           <p className="text-xl font-bold"> Upload a File for Preview</p>
           <a
-            href="https://fastupload.io/lXEVV4BKDOLN/NWX1U53KCz8N7SC/rk9zKnMVQ30lY/test.xlsx"
+            href="https://docs.google.com/spreadsheets/d/18MOTHq0447en3TeaS5BIa2yJtXQT4gQZ/edit?usp=sharing&ouid=109197967265480955608&rtpof=true&sd=true"
             className="text-sm text-[gray] flex gap-1 items-center"
           >
             <svg
