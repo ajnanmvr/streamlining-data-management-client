@@ -1,4 +1,5 @@
 "use client";
+import { useUserContext } from "@/context/User";
 import Axios from "@/utils/Axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,6 +12,7 @@ interface Props {
 const View = (props: Props) => {
   const [project, setProject] = useState<any>();
   const [loading, setLoading] = useState<boolean>(true); // New state for loading
+  const { user , setUser } = useUserContext()
   const router = useRouter();
   const [copyAlert,setCopyAlert] = useState(false)
 
@@ -22,6 +24,13 @@ const View = (props: Props) => {
         setProject(res.data);
         setLoading(false); // Set loading to false when data is received
         console.log(res.data);
+        // check the project is public or the user have access the this project
+
+        if(!res.data?.isPublic){
+          const project = res.data
+          // technich
+        }
+        
       })
       .catch((err) => {
         console.log(err);
