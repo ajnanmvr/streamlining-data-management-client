@@ -8,6 +8,8 @@ function page() {
   const [selectedRow, setSelectedRow] = useState<any>(0);
   const [updateModal, setUpdateModal] = useState<boolean>(false);
   const [addModal, setAddModal] = useState<boolean>(false);
+  const [filterBox, setFilterBox] = useState(false)
+  const [filterText,setFilterText] = useState("")
   const alphabets = [
     "A",
     "B",
@@ -47,7 +49,7 @@ function page() {
       //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
       //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
     });
-    XLSX.writeFile(workbook, "DataSheet.xlsx");
+    XLSX.writeFile(workbook, "Excelens.xlsx");
   };
 
 
@@ -63,34 +65,51 @@ function page() {
   return (
     excelData.length > 0 && (
       <>
+        {filterBox ? (
+          <div className="fixed top-0 left-0 w-full h-6 z-50 flex ">
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 ml-auto  text-primary bg-white">
+              <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clipRule="evenodd" />
+            </svg>
+            <input type="text" className="h-6" onChange={(e)=>{
+              setFilterText(e.target.value)
+              // filter the excelData by e.target.value
+              
+            }} />
+            </div>        ) : (
+          <div className="fixed top-0 left-0 w-full h-full z-50" onClick={()=>setFilterBox(!filterBox)}>
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 ml-auto  text-primary bg-white">
+              <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z" clipRule="evenodd" />
+            </svg>
+            </div>
+        )}
         {updateModal && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
             <div className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center relative">
               <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => setUpdateModal(false)}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></button>
               <h1 className="text-center font-semibold text-2xl">Edit <span className="font-extrabold text-primary">The Row</span></h1>
 
-              <p 
-              onClick={()=>{
-                // delete selected row using array.filter
-               const afterDeletedRows = excelData[sheetCount].rows.filter((row:any, index:any)=> index !== selectedRow)
+              <p
+                onClick={() => {
+                  // delete selected row using array.filter
+                  const afterDeletedRows = excelData[sheetCount].rows.filter((row: any, index: any) => index !== selectedRow)
 
-                // set the new data
+                  // set the new data
 
-                setExcelData((prev:any)=>{
-                  prev[sheetCount].rows = afterDeletedRows;
-                  return [...prev]
-                })
+                  setExcelData((prev: any) => {
+                    prev[sheetCount].rows = afterDeletedRows;
+                    return [...prev]
+                  })
 
-                // close the modal
+                  // close the modal
 
-                setUpdateModal(false);
+                  setUpdateModal(false);
 
-              }}
+                }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className="fill-red-500 cursor-pointer hover:fill-red-800">
-  {/*! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. */}
-  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-</svg>
+                  {/*! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. */}
+                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                </svg>
               </p>
               <div className="max-h-[70vh] overflow-auto m-auto">
                 {excelData[sheetCount]?.rows.map(
@@ -132,46 +151,48 @@ function page() {
         {
           addModal && (
             <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-x-auto">
-            <div className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center relative">
-              <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => setAddModal(false)}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></button>
-              <h1 className="text-center font-semibold text-2xl">Add <span className="font-extrabold text-primary">New Row</span></h1>
-              <div className="max-h-[70vh] overflow-auto m-auto">
-                {excelData[sheetCount]?.rows.map(
-                  (cell: any, cellIndex: any) => {
-                    if (cellIndex == selectedRow) {
-                      return (
-                        Object.values(cell).map((value, colIndex) => (
+              <div className="bg-white flex flex-col h-fit w-96 p-10 rounded-xl gap-3 items-center relative">
+                <button className=' absolute top-5 right-5  px-3 py-1 ' onClick={() => setAddModal(false)}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" className='h-8 w-8 fill-red-800 p-1 hover:bg-red-50 rounded-full ' viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg></button>
+                <h1 className="text-center font-semibold text-2xl">Add <span className="font-extrabold text-primary">New Row</span></h1>
+                <div className="max-h-[70vh] overflow-auto m-auto">
+                  {excelData[sheetCount]?.rows.map(
+                    (cell: any, cellIndex: any) => {
+                      if (cellIndex == selectedRow) {
+                        return (
+                          Object.values(cell).map((value, colIndex) => (
 
-                          <input
-                            type="text"
-                            key={cellIndex}
-                            // value={value as string}
-                            placeholder={
-                              Object.keys(cell)[colIndex] as unknown as string
-                            }
-                            className="px-3 py-2 rounded-lg border my-1 focus:border-primary w-full"
-                            onChange={(e) => {
-                              console.log(e.target.value);
-                              setExcelData((prev: any) => {
-                                prev[sheetCount].rows[cellIndex][Object.keys(cell)[colIndex]] = e.target.value;
-                                return [...prev];
-                              });
-                              console.log(excelData);
-                            }}
-                          />
+                            <input
+                              type="text"
+                              key={cellIndex}
+                              // value={value as string}
+                              placeholder={
+                                Object.keys(cell)[colIndex] as unknown as string
+                              }
+                              className="px-3 py-2 rounded-lg border my-1 focus:border-primary w-full"
+                              onChange={(e) => {
+                                console.log(e.target.value);
+                                setExcelData((prev: any) => {
+                                  prev[sheetCount].rows[cellIndex][Object.keys(cell)[colIndex]] = e.target.value;
+                                  return [...prev];
+                                });
+                                console.log(excelData);
+                              }}
+                            />
 
-                        ))
-                      )
+                          ))
+                        )
 
 
+                      }
                     }
-                  }
-                )}
+                  )}
 
-              
+                </div>
+                <button onClick={() => setAddModal(false)}>
+                  submit
+                </button>
               </div>
             </div>
-          </div>
           )
         }
         <div className="flex text-sm">
@@ -203,27 +224,68 @@ function page() {
 
           <table className="min-w-full">
             <thead className="cursor-pointer">
-              <tr className="sticky top-0">
+              {/* <tr className="sticky top-0">
                 {alphabets.map((alphabet: any, alphabetIndex: any) => (
                   <td className="border-2 px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
                     {alphabet}
                   </td>
                 ))}
-              </tr>
-            </thead>
-            <tbody className="cursor-cell">
+              </tr> */}
               {excelData[sheetCount].rows
                 .slice(0, 1)
                 .map((row: any, rowIndex: any) => (
-                  <tr className="border border-smoke">
-                    {Object.keys(row)
-                      ?.map((key, colIndex) => (
-                        <td scope="col" className="border p-2 border-smoke">
-                          {key as unknown as string}
-                        </td>
-                      ))}
+                  <tr className="sticky top-0 cursor-cell">
+                    {Object.keys(row)?.map((key, colIndex) => (
+                      <td scope="col" className="border px-2 h-8 hover:bg-dark bg-primary font-semibold text-white capitalize border-primary">
+                        <div className="flex flex-row items-center justify-between">
+                          <p>
+                            {key as unknown as string}
+                          </p>
+                          {/* button for ascending sort */}
+
+                          <div className="cursor-pointer">
+                            <svg   // on click sort data by that key ascending
+                              onClick={() => {
+                                const sortedRows = excelData[sheetCount].rows.sort((a: any, b: any) => {
+                                  if (typeof a[key] === 'number') return a[key] - b[key];
+                                  else return String(a[key]).localeCompare(String(b[key]));
+                                });
+
+                                setExcelData((prev: any) => {
+                                  prev[sheetCount].rows = sortedRows;
+                                  return [...prev];
+                                });
+                              }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+
+                            <svg onClick={() => {
+                              const sortedRows = excelData[sheetCount].rows.sort((a: any, b: any) => {
+                                if (typeof a[key] === 'number') return b[key] - a[key];
+                                else return String(b[key]).localeCompare(String(a[key]));
+                              });
+
+                              setExcelData((prev: any) => {
+                                prev[sheetCount].rows = sortedRows;
+                                return [...prev];
+                              });
+                            }}
+                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                          </div>
+
+
+
+                        </div>
+                      </td>
+                    ))}
                   </tr>
+
                 ))}
+            </thead>
+            <tbody className="cursor-cell">
+
               {excelData[sheetCount]?.rows.map((row: any, rowIndex: any) => (
                 <tr>
                   {Object.values(row)?.map((value, colIndex) => (
@@ -296,7 +358,7 @@ function page() {
             >
               Download
             </button>
-            
+
             <button
               className="p-2 px-4 bg-primary text-white hover:bg-dark rounded-xl"
               onClick={() => {
@@ -318,24 +380,24 @@ function page() {
                   return [...prev];
                 });
 
-                
+
 
                 // make added row selected
 
                 setSelectedRow(excelData[sheetCount].rows.length - 1);
 
-                
+
 
 
               }}
             >
-             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className="fill-white">
-  {/*! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. */}
-  <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-</svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" className="fill-white">
+                {/*! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. */}
+                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+              </svg>
 
             </button>
-            </div>
+          </div>
         </div>
       </>
     )
