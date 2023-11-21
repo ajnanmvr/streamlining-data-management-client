@@ -139,3 +139,8 @@ Tailor sharing settings for flexible collaboration.
 - **Community and Support:** Encourage user interaction.
 
 Feel free to explore the platform and make the most of its capabilities. For any questions or feedback, join our community forum.
+
+
+# Community
+
+We welcome contributions and feedback. Feel free to open an [issue](https://github.com/ajnanmvr/cdc-connect/issues).
