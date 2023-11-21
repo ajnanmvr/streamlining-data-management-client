@@ -140,7 +140,20 @@ Tailor sharing settings for flexible collaboration.
 
 Feel free to explore the platform and make the most of its capabilities. For any questions or feedback, join our community forum.
 
+## Screen Shots
+
+<p>
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/b1cd5a8d-d857-4780-949f-8b98816329c2" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/11cdc8e0-57f5-4991-9286-ace2918b0b28" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/2ec77f9c-16ef-4b48-a5f9-0da3d38bbb80" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/c26a730a-477b-48ef-bda4-4d2f65511108" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/046d4677-239e-45fb-b237-10e3fcb7c7c3" alt="screenshot" width="300">
+  <img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/5cde66ab-cb18-4c7c-9214-ea7cd63a4af3" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/39b4c23d-6873-48a9-9138-7c82315b97aa" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/03ec3c1b-3f67-4183-8507-7fa60bfa0f47" alt="screenshot" width="300">
+<img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/bcb7c308-894b-44de-93a7-ffd32692453b" alt="screenshot" width="300">
+</p>
 
 # Community
 
-We welcome contributions and feedback. Feel free to open an [issue](https://github.com/ajnanmvr/cdc-connect/issues).
+We welcome contributions and feedback. Feel free to open an [issue](https://github.com/ajnanmvr/streamlining-data-management-client/issues).
