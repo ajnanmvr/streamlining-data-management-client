@@ -2,6 +2,41 @@
 
 Welcome to our Excel Data Management Platform, a cross-platform web application crafted with Next.js and TypeScript, styled with Tailwind CSS. This powerful solution is designed to streamline and enhance the management of Excel data, offering a seamless experience for users across various devices and operating systems.
 
+## Getting Started
+
+Follow these instructions to build and run the project.
+
+### Setup React Native
+
+A detailed guide for setting up Next.JS can be found [here](https://nextjs.org/docs).
+
+### Setup Project
+
+- Clone this repository using `git clone https://github.com/ajnanmvr/streamlining-data-management-client.git`.
+- `cd` into `streamlining-data-management-client`.
+- Run `npm install` to install project dependencies.
+
+
+## Running the App
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
 ## Key Features:
 
 ### 1. Cross-Platform Accessibility:
