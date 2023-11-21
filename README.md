@@ -5,6 +5,18 @@ Welcome to our Excel Data Management Platform, a cross-platform web application 
 <p><img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/c8fbf4c1-913e-48da-a4eb-cdb81b564fec" width="1000"></p>
 
 
+## Live Links 
+### Client 
+
+- Github Repo : https://github.com/ajnanmvr/streamlining-data-management-client/
+- Hosted : https://streamlining-data-management-client.vercel.app/
+
+### Server
+
+- Github Repo : https://github.com/MuhammedHashimT/streamlining-data-management-api/
+- Hosted : https://gta-rho.vercel.app/	
+
+
 ## Getting Started
 
 Follow these instructions to build and run the project.
