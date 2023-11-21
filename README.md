@@ -2,6 +2,9 @@
 
 Welcome to our Excel Data Management Platform, a cross-platform web application crafted with Next.js and TypeScript, styled with Tailwind CSS. This powerful solution is designed to streamline and enhance the management of Excel data, offering a seamless experience for users across various devices and operating systems.
 
+<p><img src="https://github.com/ajnanmvr/streamlining-data-management-client/assets/94433947/c8fbf4c1-913e-48da-a4eb-cdb81b564fec" width="1000"></p>
+
+
 ## Getting Started
 
 Follow these instructions to build and run the project.
